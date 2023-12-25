@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
-import { Story, Meta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import Modal, { IModal } from './index';
+import ButtonOtus from '../ButtonOtus';
 
 export default {
-  title: 'Modal',
+  title: 'Модальное окно',
   component: Modal,
+  argTypes: {
+    visible: { control: 'boolean' },
+    onClose: { action: 'onClose' },
+    children: { control: 'text' },
+  },
 } as Meta;
 
-const Template: Story<IModal> = (args:IModal) => <Modal {...args} />;
+export const Default: StoryObj<IModal> = (args:IModal) => {
+  const [visible, setVisible] = useState(args.visible);
 
-let visible = true
+  return (
+    <div style={{display:'flex', position:'relative', height:'600px', alignItems:'center', justifyContent:'center'}}>
+      <ButtonOtus onClick={() => setVisible(true)}>Открыть Modal</ButtonOtus>
+      <Modal {...args} visible={visible} onClose={() => setVisible(false)} />
+    </div>
+  );
+};
 
-export const Default = Template.bind({});
 Default.args = {
-  visible: visible,
-  onClose: () => {
-    visible = !visible
-  },
-  children: 'Я модальное окно'
-} as IModal;  
+  visible: true,
+  children: 'Я модальное окно',
+};

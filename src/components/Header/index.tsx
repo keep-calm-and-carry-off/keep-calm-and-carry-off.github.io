@@ -9,7 +9,7 @@ const Header: FC<IHeaderProps> = (props:IHeaderProps) => {
         <>
             <div className={styles.headerContainer} {...props}>
                 <div className={styles.headerLogo}>
-                    <Logo height={'100%'} width={'100%'} />
+                    <Logo/>
                 </div>
                 {props.children}
             </div>

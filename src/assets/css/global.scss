@@ -1,0 +1,47 @@
+$primaryColor: black;
+$secondaryColor: #A2A6B0;
+$whiteColor: white;
+$infoColor: #0156FF;
+$transparentColor: transparent;
+$lightLolor: #F5F7FF;
+$greyColor: #CACDD8;
+
+@import url('https://fonts.cdnfonts.com/css/rubik');
+
+@mixin colors {
+    --white-color-text: #{$whiteColor};
+    --white-color-border: #{$whiteColor};
+    --white-color-background: #{$whiteColor};
+
+    --primary-color-text: #{$primaryColor};
+    --primary-color-border: #{$primaryColor};
+    --primary-color-background: #{$primaryColor};
+
+    --secondary-color-text: #{$secondaryColor};
+    --secondary-color-border: #{$secondaryColor};
+    --secondary-color-background: #{$secondaryColor};
+
+    --transparent-color-text: #{$transparentColor};
+    --transparent-color-border: #{$transparentColor};
+    --transparent-color-background: #{$transparentColor};
+
+    --info-color-text: #{$infoColor};
+    --info-color-border: #{$infoColor};
+    --info-color-background: #{$infoColor};
+
+    --light-color-text: #{$lightLolor};
+    --light-color-border: #{$lightLolor};
+    --light-color-background: #{$lightLolor};
+
+    --grey-color-text: #{$greyColor};
+    --grey-color-border: #{$greyColor};
+    --grey-color-background: #{$greyColor};
+}
+
+:root {
+    @include colors;
+}
+
+:global(*){
+    font-family: 'Rubik', sans-serif;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
+import { Meta, Story, StoryObj } from '@storybook/react';
 import Header, { IHeaderProps } from './index';
 
 export default {
@@ -8,31 +8,24 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'Header component description',
+        component: 'Компонент Header',
       },
     },
   },
   tags: ['autodocs']
 } as Meta;
 
-const Template: Story<IHeaderProps> = (args:IHeaderProps) => <Header {...args} />;
-
-export const Default: Story<IHeaderProps> = Template.bind({});
+export const  Default:StoryObj = (args:IHeaderProps) => <Header {...args}/>
 Default.args = {
-  style: { background: '#10002b' },
-  children: <div style={{ display: 'flex', color: 'white', alignItems: 'center', padding: '8px' }}>Company Name</div>,
+  style: { border: '1px solid #10002b' },
+  children: null,
 };
 
 Default.parameters = {
   docs: {
     source: {
       code: `
-        <Header
-          style={{ background: '#10002b' }}
-        >
-          <div style={{ display: 'flex', color: 'white', alignItems: 'center', padding: '8px' }}>Company Name</div>
-        </Header>
-      `,
+        <Header/>`,
     },
   },
 };

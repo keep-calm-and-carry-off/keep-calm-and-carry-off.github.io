@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
+import { RuleSetRule } from 'webpack';
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const config: StorybookConfig = {
@@ -22,15 +23,23 @@ const config: StorybookConfig = {
     autodocs: 'tag',
   },
   webpackFinal: async (config) => {
+    if (!config.resolve) config.resolve = {}
+    if (!config.plugins) config.plugins = []
+    if (!config.module) config.module = {}
+    if (!config.module.rules) config.module.rules = []
     config.resolve.alias = {
-      ...config.resolve.alias,
+      ...config.resolve?.alias,
       'src': path.resolve(__dirname, '../src'),
     };
     config.plugins.push(new MiniCssExtractPlugin())
-    const imageRule = config.module.rules.find((rule) =>
-      rule.test?.test(".svg")
-    );
-    imageRule.exclude = /\.svg$/;
+    const imageRule= config.module.rules.find((rule) =>
+      //@ts-ignore
+      rule?.test?.test(".svg")
+    ) as RuleSetRule;
+    if( imageRule){
+      imageRule.exclude = /\.svg$/;
+    }
+    
     config.module.rules.push(
       {
         test: /\.svg$/i,
@@ -40,9 +49,7 @@ const config: StorybookConfig = {
         test: /\.s[ac]ss$/i,
         exclude: /\.module\.s([ca])ss$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -52,6 +59,7 @@ const config: StorybookConfig = {
             },
           },
           'sass-loader',
+          
         ],
       },
       {

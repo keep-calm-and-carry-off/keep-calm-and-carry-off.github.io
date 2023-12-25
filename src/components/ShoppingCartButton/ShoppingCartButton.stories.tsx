@@ -5,23 +5,20 @@ import { Meta, Story } from '@storybook/react';
 
 
 export default {
-  title: 'ShoppingCartButton',
+  title: 'Кнопка добавить в коризну',
   component: ShoppingCartButton,
   argTypes: {
     count: {
       control: { type: 'number' },
     },
+    disabled: {
+      control: { type: 'boolean'}
+    }
   },
 } as Meta;
 
 const Template: Story<IShoppingCartButtonProps> = (args:IShoppingCartButtonProps) => {
   const [count, setCount] = useState(args.count);
-
-  const handleCountChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value.replace(/[^\d]/g, '');
-    setCount(Number(newValue));
-  };
-
   return <ShoppingCartButton {...args} count={count} setCount={setCount} />;
 };
 

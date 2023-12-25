@@ -1,9 +1,6 @@
 declare namespace StylesModuleScssNamespace {
   export interface IStylesModuleScss {
-    cartButtonWithIncrement: string;
-    cartIcon: string;
-    increment: string;
-    inputValue: string;
+    layout: string;
   }
 }
 
