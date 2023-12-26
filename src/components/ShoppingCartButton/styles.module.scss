@@ -1,0 +1,31 @@
+.input-value {
+    width: 30px;
+    font-size: 14px;
+    text-align: center;
+    margin: 0px 8px;
+    border-radius: 4px;
+    border: none;
+}
+
+.increment {
+    &:hover {
+        stroke-width: 3;
+        cursor: pointer;
+    }
+
+    &:active {
+        stroke-width: 3;
+        stroke-opacity: 0.5;
+    }
+}
+
+.cart-icon {
+    margin-right: 8px;
+}
+
+.cart-button-with-increment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
