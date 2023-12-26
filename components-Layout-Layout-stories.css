@@ -1,0 +1,29 @@
+.header-container__XDmlh{
+    display: flex;
+    position: sticky;
+    align-items: center;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background: white;
+    padding: 8px;
+}
+.header-logo__qCr2g{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 60px;
+    height: 100%;
+    align-items: center;
+}
+.layout__yy_PG{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    width: 100%;
+
+}
+
+/*# sourceMappingURL=components-Layout-Layout-stories.css.map*/
