@@ -30,6 +30,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Set environment variable for GitHub Actions
+        run: echo "REACT_APP_ASSETS_PATH=src" >> $GITHUB_ENV
       # Запускаем тесты и линтер
       - name: Run tests and linter
         run: npm run lint && npm test
