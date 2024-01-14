@@ -1,7 +1,11 @@
 .App {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-sizing: border-box;
+    max-width: var(--max-width);
+    margin: auto;
 }
-
 .App-logo {
     height: 40vmin;
     pointer-events: none;

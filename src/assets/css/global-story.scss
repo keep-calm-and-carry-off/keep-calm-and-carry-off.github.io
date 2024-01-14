@@ -103,13 +103,9 @@ $maxWidth:1400px;
 }
 :root {
     @include sizes;
-}
-:global(.light-mode){
     @include colors;
 }
+
 :global(*){
     font-family: 'Rubik', sans-serif;
-}
-:global(.dark-mode){
-    @include colors-dark-mode;
 }
