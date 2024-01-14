@@ -15,13 +15,13 @@ const LanguageSwitcher: FC = (props) => {
         i18n.changeLanguage(langSel);
     }
     return (
-        <>
+        <div style={{display:'flex', flexDirection:'row'}}>
             <GrLanguage style={{ marginRight: '4px' }} />
             <span style={{ marginRight: '4px' }}>рус</span>
             <Switcher onChange={handleSwitchLang} />
             <span style={{ marginLeft: '8px' }}>eng</span>
             <GrLanguage style={{ marginLeft: '8px' }} />
-        </>
+        </div>
     )
 }
 

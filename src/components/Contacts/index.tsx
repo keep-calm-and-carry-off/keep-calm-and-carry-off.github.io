@@ -4,6 +4,7 @@ import Switcher from '../Switcher'
 import { WiSolarEclipse, WiMoonAltWaxingCrescent5 } from "react-icons/wi";
 import LanguageSwitcher from '../Language Switcher';
 import { useTranslation } from 'react-i18next';
+import ThemeSwitcher from '../Theme Switcher';
 
 
 interface IContacts {
@@ -12,12 +13,7 @@ interface IContacts {
 
 const Contacts: FC<IContacts> = (props: IContacts) => {
     const { t } = useTranslation()
-    const handleSwitch = (themeSelected: boolean) => {
-        let themeSel = ''
-        if (themeSelected) themeSel = 'dark'
-        else themeSel = 'light'
-        props.themeSelector(themeSel)
-    }
+    
     return (
         <div className={styles.contacts}>
             <div className={styles.wrapper}>
@@ -37,9 +33,7 @@ const Contacts: FC<IContacts> = (props: IContacts) => {
                     <span className={styles.primaryInfo}>8 (495) 625-28-19</span>
                 </span>
                 <div className={styles.themeSwitch}>
-                    <WiSolarEclipse style={{ marginRight: '8px' }} />
-                    <Switcher onChange={handleSwitch} />
-                    <WiMoonAltWaxingCrescent5 style={{ marginLeft: '8px' }} />
+                    <ThemeSwitcher themeSelector={props.themeSelector}/>
                 </div>
             </div>
         </div>
