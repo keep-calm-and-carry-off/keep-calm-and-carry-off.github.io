@@ -5,8 +5,10 @@
     top: 0;
     width: 100%;
     height: 60px;
-    background: white;
+    background: var(--white-color-background);
     padding: 8px;
+    z-index: 9999;
+    box-sizing: border-box;
 }
 .header-logo{
     display: flex;
