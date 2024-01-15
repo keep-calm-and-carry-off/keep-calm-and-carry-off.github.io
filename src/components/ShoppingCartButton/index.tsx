@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { LuPlus, LuMinus } from "react-icons/lu";
 import * as styles from './styles.module.scss'
 import ButtonOtus from '../ButtonOtus';
@@ -25,7 +25,7 @@ const ShoppingCartButton: React.FC<IShoppingCartButtonProps> = (props: IShopping
             <>
                 <ButtonOtus variant='info' className={styles.cartButtonWithIncrement}>
                         <LuMinus className={styles.increment} onClick={() => props.setCount(props.count - 1)}/>
-                        <input type="text" className={styles.inputValue} value={props.count} onChange={(e: any) => { props.setCount((e.target.value).replace(/[^\d]/g, '')) }} />
+                        <input type="text" className={styles.inputValue} value={props.count} onChange={(e: ChangeEvent<HTMLInputElement>) => { props.setCount(Number((e.target.value).replace(/[^\d]/g, ''))) }} />
                         <LuPlus className={styles.increment} onClick={() => props.setCount(props.count + 1)} width={16} height={16} /></ButtonOtus>
                 {/* <div className={styles.cartContainer}>
                     <LuMinus className={styles.increment} onClick={() => props.setCount(props.count - 1)} width={16} height={16} />

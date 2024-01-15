@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React from 'react';
 import ShortProductCard, { IShortProductCardProps } from './index';
 import { Meta, Story, StoryObj } from '@storybook/react';
 
