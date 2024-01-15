@@ -1,7 +1,5 @@
 import React, { FC } from 'react'
 import * as styles from './styles.module.scss'
-import Switcher from '../Switcher'
-import { WiSolarEclipse, WiMoonAltWaxingCrescent5 } from "react-icons/wi";
 import LanguageSwitcher from '../Language Switcher';
 import { useTranslation } from 'react-i18next';
 import ThemeSwitcher from '../Theme Switcher';

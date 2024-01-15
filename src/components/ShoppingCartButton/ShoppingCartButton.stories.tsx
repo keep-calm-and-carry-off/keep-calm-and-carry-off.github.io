@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 import ShoppingCartButton, { IShoppingCartButtonProps } from './index';
 import { Meta, Story } from '@storybook/react';
 
