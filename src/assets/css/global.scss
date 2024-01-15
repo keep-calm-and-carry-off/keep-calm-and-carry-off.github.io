@@ -18,7 +18,7 @@ $greyColorDarkMode: #CACDD8;
 $yellowColorDarkMode: #FFB800;
 $successColorDarkMode: #78a962;
 
-$maxWidth:1400px;
+$maxWidth: 1400px;
 
 @import url('https://fonts.cdnfonts.com/css/rubik');
 
@@ -98,18 +98,38 @@ $maxWidth:1400px;
     --success-color-background: #{$successColorDarkMode};
 }
 
-@mixin sizes{
+@mixin sizes {
     --max-width:#{$maxWidth};
 }
+
 :root {
     @include sizes;
 }
-:global(.light-mode){
+
+:global(.light-mode) {
     @include colors;
 }
-:global(*){
+
+:global(*) {
     font-family: 'Rubik', sans-serif;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: var(--grey-color-background) var(--white-color-background);
 }
-:global(.dark-mode){
+
+:global(*::-webkit-scrollbar) {
+    width: 4px;
+}
+
+:global(*::-webkit-scrollbar-thumb) {
+    background-color: var(--grey-color-background);
+    border-radius: 50px;
+}
+
+:global(*::-webkit-scrollbar-track) {
+    background-color: invert(var(--grey-color-background));
+}
+
+:global(.dark-mode) {
     @include colors-dark-mode;
 }
