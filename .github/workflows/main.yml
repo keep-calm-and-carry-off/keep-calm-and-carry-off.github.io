@@ -2,7 +2,7 @@ name: Test, Lint, Build and Deploy on Github Pages
 
 on:
   push:
-    branches: ["master", "main"]
+    branches: ["master", "main", "dev"]
 
   # Позволяет запустить этот рабочий процесс вручную на вкладке Actions
   workflow_dispatch:
@@ -17,6 +17,8 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
+    env:
+      SRC_DIR: 'src'
 
     steps:
       - uses: actions/checkout@v3

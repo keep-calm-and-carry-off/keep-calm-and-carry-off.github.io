@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import ThemeSwitcher from './index';
 
 export default {

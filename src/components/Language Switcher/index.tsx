@@ -1,12 +1,10 @@
 import React, { FC } from "react";
 import { GrLanguage } from "react-icons/gr";
 import Switcher from "../Switcher";
-import { useTranslation, withTranslation, Trans } from 'react-i18next';
-import { Locale } from "src/helpers/localization/i18next_settings";
+import { useTranslation } from 'react-i18next';
 
-const LanguageSwitcher: FC = (props) => {
+const LanguageSwitcher: FC = () => {
     const { i18n } = useTranslation();
-  const lang = (i18n.language as Locale) === Locale.ru ? Locale.en : Locale.ru;
 
     const handleSwitchLang = (langSelected: boolean) => {
         let langSel = ''
