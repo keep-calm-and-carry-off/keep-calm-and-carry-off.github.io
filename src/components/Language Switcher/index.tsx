@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 const LanguageSwitcher: FC = () => {
     const { i18n } = useTranslation();
+    const language = i18n.language
 
     const handleSwitchLang = (langSelected: boolean) => {
         let langSel = ''
@@ -16,7 +17,7 @@ const LanguageSwitcher: FC = () => {
         <div style={{display:'flex', flexDirection:'row'}}>
             <GrLanguage style={{ marginRight: '4px' }} />
             <span style={{ marginRight: '4px' }}>рус</span>
-            <Switcher onChange={handleSwitchLang} />
+            <Switcher value={language === 'ru' ? false : true} onChange={handleSwitchLang} />
             <span style={{ marginLeft: '8px' }}>eng</span>
             <GrLanguage style={{ marginLeft: '8px' }} />
         </div>

@@ -1,30 +1,31 @@
-import React, { useState, useCallback } from 'react';
-import * as styles from './styles.module.scss';
-import cn from 'classnames';
+import React, { useState, useCallback } from 'react'
+import * as styles from './styles.module.scss'
+import cn from 'classnames'
 
 interface SwitcherProps {
-    onChange: (state: boolean) => void;
+    value: boolean
+    onChange: (state: boolean) => void
 }
 
-const Switcher: React.FC<SwitcherProps> = ({onChange }) => {
-    const [activeOption, setActiveOption] = useState(false);
+const Switcher: React.FC<SwitcherProps> = (props) => {
+    const [activeOption, setActiveOption] = useState(props.value)
 
     const handleSwitch = useCallback(() => {
         const option = !activeOption
-        setActiveOption(option);
-        onChange(option);
-    }, [activeOption, onChange]);
+        setActiveOption(option)
+        props.onChange(option)
+    }, [activeOption, props.onChange])
 
     return (
-        <div className={cn(styles.switcher, { 
+        <div className={cn(styles.switcher, {
             [styles.active]: activeOption
-            })} onClick={handleSwitch}>
+        })} onClick={handleSwitch}>
             <div className={cn(styles.slider, {
                 [styles.sliderActive]: activeOption,
-                [styles.sliderDeactive]: !activeOption 
+                [styles.sliderDeactive]: !activeOption
             })} />
         </div>
     )
 }
 
-export default Switcher;
+export default Switcher
