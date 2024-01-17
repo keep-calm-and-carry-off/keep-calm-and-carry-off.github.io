@@ -22,6 +22,12 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
+  "refs": {
+    preview: {
+      title: "Preview",
+      url: "path/to/preview.tsx",
+    },
+  },
   webpackFinal: async (config) => {
     if (!config.resolve) config.resolve = {}
     if (!config.plugins) config.plugins = []

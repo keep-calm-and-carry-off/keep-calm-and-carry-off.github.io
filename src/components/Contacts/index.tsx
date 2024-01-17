@@ -1,8 +1,10 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import * as styles from './styles.module.scss'
 import LanguageSwitcher from '../Language Switcher';
 import { useTranslation } from 'react-i18next';
 import ThemeSwitcher from '../Theme Switcher';
+import { CiSettings } from "react-icons/ci";
+import Modal2 from '../Modal2';
 
 
 interface IContacts {
@@ -10,14 +12,12 @@ interface IContacts {
 }
 
 const Contacts: FC<IContacts> = (props: IContacts) => {
+    const [isShow, setIsShow] = useState(false)
     const { t } = useTranslation()
-    
+
     return (
         <div className={styles.contacts}>
             <div className={styles.wrapper}>
-                <div className={styles.themeSwitch}>
-                    <LanguageSwitcher />
-                </div>
                 <span>
                     <span className={styles.secondaryInfo}>{t(`weekDays.short.Mo`) + '-' + t(`weekDays.short.Fr`)}</span>
                     <span className={styles.primaryInfo}>10:00-19:00</span>
@@ -31,8 +31,17 @@ const Contacts: FC<IContacts> = (props: IContacts) => {
                     <span className={styles.primaryInfo}>8 (495) 625-28-19</span>
                 </span>
                 <div className={styles.themeSwitch}>
-                    <ThemeSwitcher themeSelector={props.themeSelector}/>
+                    <CiSettings className={styles.settings} onClick={() => setIsShow(true)} />
                 </div>
+                {isShow && 
+                <Modal2 onClose={() => setIsShow(false)}>
+                    <div className={styles.modalSettings}>
+                    <p>Язык</p>
+                    <LanguageSwitcher />
+                    <p>Тема</p>
+                    <ThemeSwitcher themeSelector={props.themeSelector} />
+                    </div>
+                </Modal2>}
             </div>
         </div>
     )

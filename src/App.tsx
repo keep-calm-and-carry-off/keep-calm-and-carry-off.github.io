@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import LogoImg from './logo.svg';
 import './App.css';
 import './assets/css/global.scss'
@@ -8,6 +8,8 @@ import Contacts from './components/Contacts';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './helpers/localization/i18next_settings';
 import { ThemeProvider } from './helpers/providers/ThemeProvider';
+import ProductList from './components/Product List';
+import { Product, createRandomProduct } from './homeworks/ts1/3_write';
 
 const App: FC = () => {
   const [theme, setTheme] = useState('light')
@@ -18,6 +20,14 @@ const App: FC = () => {
       document.body.classList.remove(theme + '-mode');
     }
   }, [theme])
+
+  const createRandomProductArr = useCallback(() => {
+    const arr: Product[] = []
+    for (let i = 0; i < 1; i++) {
+      arr.push(createRandomProduct(new Date().toISOString()))
+    }
+    return arr
+  }, [])
   const AboutMe = () => {
     return (
       <header className="App-header">
@@ -34,9 +44,10 @@ const App: FC = () => {
       <ThemeProvider>
         <div className={'App'}>
           <Layout style={{ padding: '8px' }}>
+            <ProductList initialProducts={createRandomProductArr()} />
           </Layout>
         </div>
-        </ThemeProvider>
+      </ThemeProvider>
     </I18nextProvider>
   );
 }

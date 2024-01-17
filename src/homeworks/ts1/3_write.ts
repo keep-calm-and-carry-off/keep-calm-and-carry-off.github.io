@@ -40,6 +40,8 @@ type Product = {
     category: Category
 
 }
+
+export type { Product }
 /*
  * Операция (Operation) может быть либо тратой (Cost), либо доходом (Profit)
 */
