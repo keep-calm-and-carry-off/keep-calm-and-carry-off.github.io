@@ -147,5 +147,17 @@
 .full-width__IFnm5{
     width: 100%;
 }
+.showcase__IoJJn {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.wrapper__nqw0U{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-/*# sourceMappingURL=components-ShortCardProduct-ShortCardProduct-stories.css.map*/
+/*# sourceMappingURL=components-Product-List-ProductList-stories.css.map*/
