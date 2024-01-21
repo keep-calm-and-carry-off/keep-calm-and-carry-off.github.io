@@ -3,6 +3,7 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import LanguageSwitcher from './index';
+import Contacts from '../Contacts';
 
 export default {
   title: 'Переключение языка',
@@ -17,8 +18,15 @@ export default {
   tags: ['autodocs'],
 } as Meta;
 
-export const  Default:StoryObj = () => <LanguageSwitcher/>
+export const Default: StoryObj = () => {
+  return (
+    <>
+      <Contacts />
+      <div style={{ padding: '8px' }}><LanguageSwitcher /></div>
 
+    </>
+  )
+}
 Default.parameters = {
   docs: {
     source: {

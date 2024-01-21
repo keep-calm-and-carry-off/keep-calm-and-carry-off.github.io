@@ -25,7 +25,7 @@ const config: StorybookConfig = {
   "refs": {
     preview: {
       title: "Preview",
-      url: "path/to/preview.tsx",
+      url: "./preview.tsx",
     },
   },
   webpackFinal: async (config) => {

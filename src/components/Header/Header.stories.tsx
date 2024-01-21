@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, Story, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import Header, { IHeaderProps } from './index';
 
 export default {
