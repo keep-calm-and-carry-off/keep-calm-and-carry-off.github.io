@@ -1,8 +1,4 @@
 import { useContext } from "react"
-import { ThemeContext } from "../helpers/context"
+import { ThemeContext } from "src/helpers/providers/ThemeProvider"
 
-export const useThemeContext = () => {
-    const context = useContext(ThemeContext)
-    if (!context) return 'light'
-    return context
-}
+export const useThemeContext = () => useContext(ThemeContext)

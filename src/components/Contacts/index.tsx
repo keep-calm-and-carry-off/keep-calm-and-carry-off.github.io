@@ -5,13 +5,11 @@ import { useTranslation } from 'react-i18next';
 import ThemeSwitcher from '../Theme Switcher';
 import { CiSettings } from "react-icons/ci";
 import Modal2 from '../Modal2';
+import { useThemeContext } from 'src/hooks/useThemeContext';
 
 
-interface IContacts {
-    themeSelector: (theme: string) => void
-}
-
-const Contacts: FC<IContacts> = (props: IContacts) => {
+const Contacts: FC = () => {
+    const {theme, setTheme} = useThemeContext()
     const [isShow, setIsShow] = useState(false)
     const { t } = useTranslation()
 
@@ -39,7 +37,7 @@ const Contacts: FC<IContacts> = (props: IContacts) => {
                     <p>Язык</p>
                     <LanguageSwitcher />
                     <p>Тема</p>
-                    <ThemeSwitcher themeSelector={props.themeSelector} />
+                    <ThemeSwitcher />
                     </div>
                 </Modal2>}
             </div>

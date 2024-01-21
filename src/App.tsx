@@ -12,16 +12,7 @@ import ProductList from './components/Product List';
 import { Product, createRandomProduct } from './homeworks/ts1/3_write';
 
 const App: FC = () => {
-  const [theme, setTheme] = useState('light')
-
-  useEffect(() => {
-    document.body.classList.add(theme + '-mode');
-    return () => {
-      document.body.classList.remove(theme + '-mode');
-    }
-  }, [theme])
-
-  const createRandomProductArr = useCallback(() => {
+    const createRandomProductArr = useCallback(() => {
     const arr: Product[] = []
     for (let i = 0; i < 1; i++) {
       arr.push(createRandomProduct(new Date().toISOString()))
@@ -40,15 +31,18 @@ const App: FC = () => {
     )
   }
   return (
-    <I18nextProvider i18n={i18n}>
-      <ThemeProvider>
-        <div className={'App'}>
-          <Layout style={{ padding: '8px' }}>
-            <ProductList initialProducts={createRandomProductArr()} />
-          </Layout>
-        </div>
-      </ThemeProvider>
-    </I18nextProvider>
+    <div className='app-container'>
+      <I18nextProvider i18n={i18n}>
+        <ThemeProvider>
+          <div className={'App'}>
+          <Contacts />
+            <Layout style={{ padding: '8px' }}>
+              <ProductList initialProducts={createRandomProductArr()} />
+            </Layout>
+          </div>
+        </ThemeProvider>
+      </I18nextProvider>
+    </div>
   );
 }
 

@@ -4,25 +4,17 @@ import cn from 'classnames'
 
 interface SwitcherProps {
     value: boolean
-    onChange: (state: boolean) => void
+    onChange: () => void
 }
 
 const Switcher: React.FC<SwitcherProps> = (props) => {
-    const [activeOption, setActiveOption] = useState(props.value)
-
-    const handleSwitch = useCallback(() => {
-        const option = !activeOption
-        setActiveOption(option)
-        props.onChange(option)
-    }, [activeOption, props.onChange])
-
     return (
         <div className={cn(styles.switcher, {
-            [styles.active]: activeOption
-        })} onClick={handleSwitch}>
+            [styles.active]: props.value
+        })} onClick={props.onChange}>
             <div className={cn(styles.slider, {
-                [styles.sliderActive]: activeOption,
-                [styles.sliderDeactive]: !activeOption
+                [styles.sliderActive]: props.value,
+                [styles.sliderDeactive]: !props.value
             })} />
         </div>
     )

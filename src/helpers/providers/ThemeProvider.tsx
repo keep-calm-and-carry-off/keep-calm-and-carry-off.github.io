@@ -1,32 +1,28 @@
-import React, { createContext, FC, useContext, useEffect, useState } from 'react';
+import React, { FC, createContext, useEffect, useState } from 'react';
 import Contacts from 'src/components/Contacts';
 import { useThemeContext } from 'src/hooks/useThemeContext';
 
-export const ThemeContext = createContext<string | undefined>(undefined);
 
+const ThemeContext = createContext(null)
 interface ThemeProviderProps {
   children: React.ReactNode;
 }
 
-export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
-  const themeContext: string = useThemeContext()
-  const [theme, setTheme] = useState(themeContext);
-
+const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
+  const [theme, setTheme] = useState('light');
   useEffect(() => {
-    document.body.classList.add(theme + '-mode');
+    const appContainers = document.querySelectorAll('.app-container')[0]
+    appContainers.classList.add(theme + '-mode')
     return () => {
-      document.body.classList.remove(theme + '-mode');
+      appContainers.classList.remove(theme + '-mode')
     };
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
-  };
 
   return (
-    <ThemeContext.Provider value={theme}>
-      <Contacts themeSelector={toggleTheme}/>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );
 };
+export { ThemeProvider, ThemeContext }
