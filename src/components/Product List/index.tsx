@@ -3,6 +3,7 @@ import ShortProductCard, { IShortProductCardProps } from '../ShortCardProduct'
 import { createRandomProduct, Product } from '../../homeworks/ts1/3_write'
 import ButtonOtus from '../ButtonOtus'
 import * as styles from './styles.module.scss'
+import { useIntersectionObserver } from 'src/hooks/useIntersectionObserver'
 
 export interface IProductListProps {
     initialProducts: Product[]
@@ -13,37 +14,14 @@ const ProductList: FC<IProductListProps> = ({ initialProducts }) => {
     const lastProductRef = useRef<HTMLDivElement | null>(null)
     const showcaseRef = useRef<HTMLDivElement | null>(null)
 
-    useEffect(() => {
-        const observer: IntersectionObserver = new IntersectionObserver(
-            (entries: IntersectionObserverEntry[]) => {
-                entries.forEach((entry: IntersectionObserverEntry) => {
-                    if (entry.isIntersecting) {
-                        handleIntersection()
-                        observer.unobserve(entry.target)
-                    }
-                })
-            },
-            { threshold: 1.0 }
-        )
-
-        const lastProduct: HTMLDivElement = lastProductRef.current
-        if (lastProduct) {
-            observer.observe(lastProduct)
-        }
-
-        return () => {
-            if (lastProduct) {
-                observer.unobserve(lastProduct)
-            }
-        }
-    }, [products])
-
     const handleIntersection = () => {
         const newProduct: Product = createRandomProduct(new Date().toISOString())
         setProducts((prevProducts) => [...prevProducts, newProduct])
     }
 
+    useIntersectionObserver(lastProductRef, handleIntersection)
 
+    const ShortProdCardMemo = React.memo(ShortProductCard)
 
     const scrollToBottom = () => {
         const showcase = showcaseRef.current
@@ -52,10 +30,12 @@ const ProductList: FC<IProductListProps> = ({ initialProducts }) => {
             showcase.scrollTop = lastProduct.offsetTop - showcase.offsetTop
         }
     }
+
     const handleShowMoreClick = useCallback(() => {
         handleIntersection()
         scrollToBottom()
     }, [handleIntersection, scrollToBottom])
+
     return (
         <div className={styles.wrapper}>
             <div ref={showcaseRef} className={styles.showcase} style={{ height: '600px', overflowY: 'auto' }}>
@@ -65,7 +45,7 @@ const ProductList: FC<IProductListProps> = ({ initialProducts }) => {
                         ref={index === products.length - 1 ? lastProductRef : null}
                         className={`product-list-item ${index === products.length - 1 ? 'last-item' : ''}`}
                     >
-                        <ShortProductCard description={'Большое и красочное описание товара, тут много текста'} {...product} />
+                        <ShortProdCardMemo description={'Большое и красочное описание товара, тут много текста'} {...product} />
                     </div>
                 ))}
             </div>
