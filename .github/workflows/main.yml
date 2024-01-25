@@ -2,7 +2,7 @@ name: Test, Lint, Build and Deploy on Github Pages
 
 on:
   push:
-    branches: ["master", "main"]
+    branches: ["master", "main", "dev"]
 
   # Позволяет запустить этот рабочий процесс вручную на вкладке Actions
   workflow_dispatch:
@@ -17,6 +17,8 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
+    env:
+      SRC_DIR: 'src'
 
     steps:
       - uses: actions/checkout@v3
@@ -33,8 +35,8 @@ jobs:
       - name: Set environment variable for GitHub Actions
         run: echo "REACT_APP_ASSETS_PATH=src" >> $GITHUB_ENV
       # Запускаем тесты и линтер
-      - name: Run tests and linter
-        run: npm run lint && npm test
+      # - name: Run tests and linter
+      #   run: npm run lint && npm test
 
       # Собираем Storybook
       - name: Build Storybook

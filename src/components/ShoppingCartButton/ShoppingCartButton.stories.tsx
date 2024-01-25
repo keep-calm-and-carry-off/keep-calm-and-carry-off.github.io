@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 import ShoppingCartButton, { IShoppingCartButtonProps } from './index';
 import { Meta, Story } from '@storybook/react';
 
@@ -12,14 +12,19 @@ export default {
       control: { type: 'number' },
     },
     disabled: {
-      control: { type: 'boolean'}
+      control: { type: 'boolean' }
     }
   },
 } as Meta;
 
-const Template: Story<IShoppingCartButtonProps> = (args:IShoppingCartButtonProps) => {
+const Template: Story<IShoppingCartButtonProps> = (args: IShoppingCartButtonProps) => {
   const [count, setCount] = useState(args.count);
-  return <ShoppingCartButton {...args} count={count} setCount={setCount} />;
+  return (
+    <div style={{width:'200px'}}>
+      <ShoppingCartButton {...args} count={count} setCount={setCount} />
+    </div>
+
+  )
 };
 
 export const Default = Template.bind({});

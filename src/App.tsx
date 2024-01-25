@@ -1,17 +1,47 @@
-import React from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import LogoImg from './logo.svg';
 import './App.css';
+import './assets/css/global.scss'
+import Layout from './components/Layout';
+import { ThemeContext } from './helpers/context';
+import Contacts from './components/Contacts';
+import { I18nextProvider } from 'react-i18next';
+import i18n from './helpers/localization/i18next_settings';
+import { ThemeProvider } from './helpers/providers/ThemeProvider';
+import ProductList from './components/Product List';
+import { Product, createRandomProduct } from './homeworks/ts1/3_write';
 
-function App() {
-  return (
-    <div className="App">
+const App: FC = () => {
+    const createRandomProductArr = useCallback(() => {
+    const arr: Product[] = []
+    for (let i = 0; i < 1; i++) {
+      arr.push(createRandomProduct(new Date().toISOString()))
+    }
+    return arr
+  }, [])
+  const AboutMe = () => {
+    return (
       <header className="App-header">
-        <LogoImg className='App-logo'/>
-          <p>Цель: систематизировать уже имеющиеся знания и получить новые.</p>
-          <p>Чем хочу овладеть: <s>миром</s> актуальными навыками по front-end</p>
-          <p>Чем владею: HTML, CSS(SASS, LESS), JS(JQuery, React), Siebel CRM</p>
-          <p>О себе: Поляков Андрей, 25.02.1994г.р., увлекаюсь автодиагностикой, Subaru. Работаю в Ak Bars Digital.</p>
+        <LogoImg className='App-logo' />
+        <p>Цель: систематизировать уже имеющиеся знания и получить новые.</p>
+        <p>Чем хочу овладеть: <s>миром</s> актуальными навыками по front-end</p>
+        <p>Чем владею: HTML, CSS(SASS, LESS), JS(JQuery, React), Siebel CRM</p>
+        <p>О себе: Поляков Андрей, 25.02.1994г.р., увлекаюсь автодиагностикой, Subaru. Работаю в Ak Bars Digital.</p>
       </header>
+    )
+  }
+  return (
+    <div className='app-container'>
+      <I18nextProvider i18n={i18n}>
+        <ThemeProvider>
+          <div className={'App'}>
+          <Contacts />
+            <Layout style={{ padding: '8px' }}>
+              <ProductList initialProducts={createRandomProductArr()} />
+            </Layout>
+          </div>
+        </ThemeProvider>
+      </I18nextProvider>
     </div>
   );
 }
