@@ -10,15 +10,18 @@ import i18n from './helpers/localization/i18next_settings';
 import { ThemeProvider } from './helpers/providers/ThemeProvider';
 import ProductList from './components/Product List';
 import { Product, createRandomProduct } from './homeworks/ts1/3_write';
+import Collapse from './components/Collapse';
+import Button from './components/ButtonOtus';
 
 const App: FC = () => {
-    const createRandomProductArr = useCallback(() => {
+  const createRandomProductArr = useCallback(() => {
     const arr: Product[] = []
     for (let i = 0; i < 1; i++) {
       arr.push(createRandomProduct(new Date().toISOString()))
     }
     return arr
   }, [])
+  const [isOpen, setIsOpen] = useState(false)
   const AboutMe = () => {
     return (
       <header className="App-header">
@@ -35,9 +38,13 @@ const App: FC = () => {
       <I18nextProvider i18n={i18n}>
         <ThemeProvider>
           <div className={'App'}>
-          <Contacts />
+            <Contacts />
             <Layout style={{ padding: '8px' }}>
-              <ProductList initialProducts={createRandomProductArr()} />
+
+              <Collapse opened={isOpen}>
+                <ProductList initialProducts={createRandomProductArr()} />
+              </Collapse>
+              <Button onClick={()=>setIsOpen(!isOpen)}>{isOpen ? 'Скрыть продукты' : 'Показать продукты'}</Button>
             </Layout>
           </div>
         </ThemeProvider>
