@@ -44,7 +44,7 @@ const App: FC = () => {
               <Collapse opened={isOpen}>
                 <ProductList initialProducts={createRandomProductArr()} />
               </Collapse>
-              <Button onClick={()=>setIsOpen(!isOpen)}>{isOpen ? 'Скрыть продукты' : 'Показать продукты'}</Button>
+              <Button onClick={() => setIsOpen(!isOpen)}>{isOpen ? 'Скрыть продукты' : 'Показать продукты'}</Button>
             </Layout>
           </div>
         </ThemeProvider>

@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState, ReactNode } from 'react'
 
-interface CollapseProps {
+export interface CollapseProps {
   opened: boolean
   children: ReactNode
 }
@@ -33,11 +33,11 @@ const Collapse: React.FC<CollapseProps> = ({ opened, children }) => {
       style={{
         overflow: 'hidden',
         height: opened ? `${height}px` : '0',
-        transition: 'height 0.3s ease',
+        transition: 'height 0.5s ease',
       }}
       onTransitionEnd={handleTransitionEnd}
     >
-      <div ref={contentRef}>{opened && children}</div>
+      <div ref={contentRef}>{children}</div>
     </div>
   )
 }
