@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Meta, Story, StoryObj } from '@storybook/react';
-import Collapse, { CollapseProps } from './index'; // Adjust the import path based on your project structure
+import React, { useEffect, useState } from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import Collapse, { CollapseProps } from './index';
 import ButtonOtus from '../ButtonOtus';
 
 export default {
@@ -24,8 +24,8 @@ export const Default: StoryObj = (args: CollapseProps) => {
         setOpened(args.opened)
     }, [args.opened])
     return (
-        <div style={{ padding: '16px' }}>
-            <ButtonOtus onClick={() => setOpened(!opened)}>
+        <div style={{ padding: '0px' }}>
+            <ButtonOtus style={{marginBottom:'16px'}} onClick={() => setOpened(!opened)}>
                 {opened ? 'Закрыть коллапс' : 'Открыть коллапс'}
             </ButtonOtus>
             <Collapse {...args} opened={opened}>
@@ -36,7 +36,7 @@ export const Default: StoryObj = (args: CollapseProps) => {
 };
 Default.args = {
     opened: false,
-    children: <div style={{ border: '1px solid red', width: 'max-content', padding: '16px', borderRadius: '16px', margin: '16px' }}>
+    children: <div style={{ border: '1px solid red', width: 'max-content', padding: '16px', borderRadius: '16px' }}>
         Я children
     </div>,
 };
