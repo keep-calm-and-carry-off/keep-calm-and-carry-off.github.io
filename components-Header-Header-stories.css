@@ -1,23 +1,3 @@
-.header-container__XDmlh{
-    display: flex;
-    position: sticky;
-    align-items: center;
-    top: 0;
-    width: 100%;
-    height: 60px;
-    background: var(--white-color-background);
-    padding: 8px;
-    z-index: 9999;
-    box-sizing: border-box;
-}
-.header-logo__qCr2g{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 60px;
-    height: 100%;
-    align-items: center;
-}
+.header-container__XDmlh{display:flex;position:sticky;align-items:center;top:0;width:100%;height:60px;background:var(--white-color-background);padding:8px;z-index:9999;box-sizing:border-box}.header-logo__qCr2g{display:flex;align-items:center;justify-content:center;position:relative;width:60px;height:100%;align-items:center}
 
 /*# sourceMappingURL=components-Header-Header-stories.css.map*/
