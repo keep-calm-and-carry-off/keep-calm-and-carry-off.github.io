@@ -9,15 +9,8 @@ const Collapse: React.FC<CollapseProps> = ({ opened, children }) => {
   const [height, setHeight] = useState<number | null>(null)
 
   useLayoutEffect(() => {
-    if (opened) {
-      setHeight(null)
-      const contentHeight = contentRef.current?.scrollHeight
-      if (contentHeight) {
-        setHeight(contentHeight)
-      }
-    } else {
-      setHeight(contentRef.current?.scrollHeight || null)
-    }
+    const contentHeight = contentRef.current?.scrollHeight || null;
+    setHeight(contentHeight)
   }, [opened])
 
   const contentRef = React.createRef<HTMLDivElement>()
