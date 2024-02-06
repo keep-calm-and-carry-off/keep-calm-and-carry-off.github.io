@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Meta, StoryObj } from '@storybook/react'
-import SliderRange, { ISliderRange } from './index'
+import RangeSlider, { ISliderRange } from './index'
 
 export default {
     title: 'Слайдер диапазона',
-    component: SliderRange,
+    component: RangeSlider,
     parameters: {
         docs: {
             description: {
@@ -18,7 +18,7 @@ export default {
 export const VerticalVariant: StoryObj = (args: ISliderRange) => {
     return (
         <div style={{ height: '300px' }}>
-            <SliderRange min={args.min} max={args.max} orientation='vertical' value={args.value} setValue={args.setValue} />
+            <RangeSlider min={args.min} max={args.max} orientation='vertical' value={args.value} setValue={args.setValue} />
         </div>
 
     );
@@ -27,7 +27,7 @@ export const VerticalVariant: StoryObj = (args: ISliderRange) => {
 export const HorizontalVariant: StoryObj = (args: ISliderRange) => {
     return (
         <div style={{ display:'flex', alignItems: 'flex-end', justifyContent:'flex-end', height: '300px' }}>
-            <SliderRange min={args.min} max={args.max} orientation='horizontal' value={args.value} setValue={args.setValue} />
+            <RangeSlider min={args.min} max={args.max} orientation='horizontal' value={args.value} setValue={args.setValue} />
         </div>
 
     );

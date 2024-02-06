@@ -11,7 +11,7 @@ export interface ISliderRange {
     promtAdditionalInfo?: string
 }
 
-const SliderRange: FC<ISliderRange> = (props) => {
+const RangeSlider: FC<ISliderRange> = (props) => {
 
     const initPercent = props.value ? Math.round(props.value / props.max * 100) : 0
     const [percent, setPercent] = useState(initPercent)
@@ -99,4 +99,4 @@ const SliderRange: FC<ISliderRange> = (props) => {
     )
 }
 
-export default SliderRange
+export default RangeSlider

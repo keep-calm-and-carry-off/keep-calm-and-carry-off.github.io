@@ -12,7 +12,7 @@ import ProductList from './components/Product List';
 import { Product, createRandomProduct } from './homeworks/ts1/3_write';
 import Collapse from './components/Collapse';
 import Button from './components/ButtonOtus';
-import SliderRange from './components/Range Slider';
+import RangeSlider from './components/Range Slider';
 const App: FC = () => {
   const createRandomProductArr = useCallback(() => {
     const arr: Product[] = []
@@ -49,8 +49,8 @@ const App: FC = () => {
               </Collapse>
               <Button onClick={() => setIsOpen(!isOpen)}>{isOpen ? 'Скрыть продукты' : 'Показать продукты'}</Button>
               <div style={{ marginTop: '15px', height:'300px'}}>
-                <SliderRange min={0} max={330} orientation='vertical' value={sliderValue} setValue={setSliderValue}/>
-                <SliderRange min={0} max={330} orientation='horizontal'  value={sliderValue} setValue={setSliderValue}/>
+                <RangeSlider min={0} max={330} orientation='vertical' value={sliderValue} setValue={setSliderValue}/>
+                <RangeSlider min={0} max={330} orientation='horizontal'  value={sliderValue} setValue={setSliderValue}/>
               </div>
             </Layout>
           </div>
