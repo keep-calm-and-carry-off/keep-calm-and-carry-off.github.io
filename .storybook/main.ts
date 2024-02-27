@@ -93,7 +93,8 @@ const config: StorybookConfig = {
                 localIdentName: '[local]__[contenthash:base64:5]'
               },
             }
-          }
+          },
+          'sass-loader',
         ]
       });
     return config;

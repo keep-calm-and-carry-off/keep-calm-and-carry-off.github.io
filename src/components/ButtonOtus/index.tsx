@@ -9,9 +9,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button: FC<ButtonProps> = ({ children, variant = 'primary', fullWidth, className, disabled, ...anyProps }) => {
     const buttonClass = cn(styles.button, {
-        [styles.primary] : 'primary',
-        [styles.secondary] : 'secondary',
-        [styles.info] : 'info',
+        [styles.primary] : variant == 'primary',
+        [styles.secondary] : variant == 'secondary',
+        [styles.info] :  variant == 'info',
         [styles.disabled]:disabled,
         [styles.fullWidth] : fullWidth
     }, className);

@@ -114,7 +114,7 @@ module.exports = (_, args) => {
             {
               loader: '@teamsupercell/typings-for-css-modules-loader',
               options: {
-                formatter: 'prettier',
+                formatter: 'prettier'
               },
             },
             {
@@ -126,6 +126,7 @@ module.exports = (_, args) => {
                 },
               },
             },
+            'sass-loader'
           ],
         },
       ],
