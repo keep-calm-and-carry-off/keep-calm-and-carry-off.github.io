@@ -37,8 +37,8 @@ jobs:
       #   run: npm run lint && npm test
 
       # Собираем Storybook
-      - name: Build Storybook
-        run: npm run build-storybook
+      - name: Build app
+        run: npm run build
 
       # Публикуем Storybook на Github Pages
       - name: Deploy Storybook to Github Pages
