@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import img from 'src/assets/img/logo.png'
 import cn from 'classnames'
 const Logo: FC = () => {
+
     return (
         <div className='d-flex flex-row h-100'>
             <img height={'100%'} src={img} />
