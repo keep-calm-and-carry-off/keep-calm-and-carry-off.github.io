@@ -1,1 +1,0 @@
-export { ProductsCart } from './ProductsCart'

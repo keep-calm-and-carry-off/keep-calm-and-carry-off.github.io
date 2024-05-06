@@ -102,18 +102,6 @@ module.exports = (_, args) => {
           ],
         },
         {
-          test: /\.(png|jpe?g|gif)$/i,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: '[name].[ext]',
-                outputPath: 'images/', // Путь, куда будут скопированы изображения после сборки
-              },
-            },
-          ],
-        },
-        {
           test: /\.module\.s([ca])ss$/,
           use: [
             'style-loader',

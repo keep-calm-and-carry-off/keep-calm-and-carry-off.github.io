@@ -5,7 +5,6 @@
     box-sizing: border-box;
     max-width: var(--max-width);
     margin: auto;
-    min-height: 100vh;
 }
 .App-logo {
     height: 40vmin;
@@ -27,9 +26,6 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
-}
-.app-container{
-    min-height: 100vh;
 }
 
 .App-link {
