@@ -4,7 +4,7 @@
     align-items: center;
     top: 0;
     width: 100%;
-    height: 60px;
+    height: 80px;
     background: var(--white-color-background);
     padding: 8px;
     z-index: 9999;
@@ -15,7 +15,21 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 60px;
     height: 100%;
     align-items: center;
+}
+.navigation-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+.nav-link{
+    text-decoration: none;
+    border-bottom:3px solid var(--transparent-color-border);
+    padding:4px;
+    color: var(--primary-color-text);
+}
+.active-link{
+    border-bottom:3px solid var(--primary-color-border) !important;
 }

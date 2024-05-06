@@ -4,19 +4,19 @@ import { createRandomProduct, Product } from '../../homeworks/ts1/3_write'
 import ButtonOtus from '../ButtonOtus'
 import * as styles from './styles.module.scss'
 import { useIntersectionObserver } from 'src/hooks/useIntersectionObserver'
+import { useProduct } from 'src/helpers/providers/ProductProvider'
 
 export interface IProductListProps {
     initialProducts: Product[]
 }
 
 const ProductList: FC<IProductListProps> = ({ initialProducts }) => {
-    const [products, setProducts] = useState<Product[]>(initialProducts)
+    const { products } = useProduct()
     const lastProductRef = useRef<HTMLDivElement | null>(null)
     const showcaseRef = useRef<HTMLDivElement | null>(null)
 
     const handleIntersection = () => {
-        const newProduct: Product = createRandomProduct(new Date().toISOString())
-        setProducts((prevProducts) => [...prevProducts, newProduct])
+        console.log('intersaction')
     }
 
     useIntersectionObserver(lastProductRef, handleIntersection)
@@ -32,7 +32,7 @@ const ProductList: FC<IProductListProps> = ({ initialProducts }) => {
     }
 
     const handleShowMoreClick = useCallback(() => {
-        handleIntersection()
+        //handleIntersection()
         scrollToBottom()
     }, [handleIntersection, scrollToBottom])
 
@@ -45,7 +45,7 @@ const ProductList: FC<IProductListProps> = ({ initialProducts }) => {
                         ref={index === products.length - 1 ? lastProductRef : null}
                         className={`product-list-item ${index === products.length - 1 ? 'last-item' : ''}`}
                     >
-                        <ShortProdCardMemo description={'Большое и красочное описание товара, тут много текста'} {...product} />
+                        <ShortProdCardMemo description={'Большое и красочное описание товара, тут много текста'} image={product.photo} {...product} />
                     </div>
                 ))}
             </div>
