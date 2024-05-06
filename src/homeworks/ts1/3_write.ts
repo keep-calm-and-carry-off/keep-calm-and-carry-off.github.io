@@ -12,7 +12,7 @@
  * - name (строка)
  * - photo (строка, необязательно)
 **/
-export type Category = {
+type Category = {
     id: string,
     name: string,
     photo?: string
