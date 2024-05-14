@@ -1,0 +1,16 @@
+
+.navigation-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+.nav-link{
+    text-decoration: none;
+    border-bottom:3px solid var(--transparent-color-border);
+    padding:4px;
+    color: var(--primary-color-text);
+}
+.active-link{
+    border-bottom:3px solid var(--primary-color-border) !important;
+}

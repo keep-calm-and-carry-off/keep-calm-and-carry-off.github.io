@@ -1,7 +1,6 @@
 .form {
-    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 700;
-    border: 0,2;
+    border: 1px ;
     border-radius: 3em;
     display: inline-block;
     line-height: 1;
@@ -11,11 +10,17 @@
     max-height: 400px;
 }
 .form-input {
-    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 700;
     line-height: 1;
     padding: 7px;
-    color: rgb(177, 189, 230);
+    color: var(--secondary-color-text);
     display: flex;
     flex-direction: column
+}
+.form-title{
+    font-size: 24px;
+    text-align: center;
+}
+.input-mui{
+    color: red;
 }

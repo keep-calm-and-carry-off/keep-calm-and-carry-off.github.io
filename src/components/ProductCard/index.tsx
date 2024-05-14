@@ -2,7 +2,6 @@ import React, { FC, useState } from 'react';
 import * as styles from './styles.module.scss';
 import { LuImageOff } from "react-icons/lu";
 import ShoppingCartButton from '../ShoppingCartButton';
-import { trunscateString } from '../utils';
 
 export interface IProductCardProps {
     price: number;
@@ -18,11 +17,11 @@ const ProductCard: FC<IProductCardProps> = (props: IProductCardProps) => {
         <div className={styles.productCard}>
 
             <div className={styles.infoContainer}>
-                <div className={styles.categoryContainer}>{props.category}<span>{'>'}</span>{trunscateString(props.name, 25)}</div>
+                <div className={styles.categoryContainer}>{props.category}<span>{'>'}</span>{props.name}</div>
                 <div className={styles.name}>{props.name}</div>
                 <div className={styles.description}>{props.description}</div>
                 <div className={styles.price}>{props.price} руб.</div>
-                <div className={styles.buttonContainer}><ShoppingCartButton count={counter} setCount={setCounter} /></div>
+                <div className={styles.buttonContainer}><ShoppingCartButton productId='1' /></div>
             </div>
             <div className={styles.imageContainer}>
                 <div className={styles.imageLayer}>

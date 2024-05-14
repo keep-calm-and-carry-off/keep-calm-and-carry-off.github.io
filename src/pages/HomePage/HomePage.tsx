@@ -1,8 +1,9 @@
 import React, { FC } from 'react'
+import { useSelector } from 'react-redux'
 import ProductList from 'src/components/Product List'
-import { useProduct } from 'src/helpers/providers/ProductProvider'
+import { getProducts } from 'src/stores/globalStore/product'
 
 export const HomePage:FC = () => {
-    const { products } = useProduct()
+    const products = useSelector(getProducts)
     return <ProductList initialProducts={products}/> 
 }

@@ -1,6 +1,4 @@
 import React, { FC, createContext, useEffect, useState } from 'react';
-import Contacts from 'src/components/Contacts';
-import { useThemeContext } from 'src/hooks/useThemeContext';
 
 
 const ThemeContext = createContext(null)
