@@ -1,6 +1,7 @@
 declare namespace StylesModuleScssNamespace {
   export interface IStylesModuleScss {
     contacts: string;
+    login: string;
     modalSettings: string;
     primaryInfo: string;
     secondaryInfo: string;

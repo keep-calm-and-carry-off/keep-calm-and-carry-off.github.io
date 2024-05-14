@@ -9,14 +9,14 @@ export interface IModal2 {
 }
 
 const Modal2: FC<IModal2> = ({ onClose, children }) => {
-  const el = document.querySelectorAll('.app-container')[0]
+  const el = document.getElementsByClassName('app-container')[0]
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
   return (
-    createPortal(
+    el && createPortal(
     <div className={styles.overlay} onClick={handleOverlayClick}>
       <div className={styles.modalContent}>
         <LuX className={styles.buttonClose} onClick={() => onClose()} />

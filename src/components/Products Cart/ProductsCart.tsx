@@ -4,38 +4,25 @@ import * as styles from './styles.module.scss'
 import { Divider, Typography } from '@mui/material'
 import { ProductItem } from './ProductItem'
 import { useProduct } from 'src/helpers/providers/ProductProvider'
-
-export interface ICartProduct extends Pick<Product, 'id'> {
-    quantity: number
-}
+import { useSelector } from 'react-redux'
+import { getAllProductsInCart, getTotalPrice } from 'src/stores/globalStore/cart'
+import { getProducts } from 'src/stores/globalStore/product'
+import { ICartProduct } from 'src/types'
+import { useProducts } from 'src/hooks/useProducts'
 
 export interface IProductsCart {
-    products: ICartProduct[]
-    setProducts: Dispatch<SetStateAction<ICartProduct[]>>
 }
 
-export const ProductsCart: FC<IProductsCart> = ({ products, setProducts }) => {
-    const [total, setTotal] = useState(0)
-    const productsOriginal = useProduct().products
-    if (products.length == 0)
+export const ProductsCart: FC = () => {
+    const products = useProducts()
+    const allProductsInCart = products.allProductsInCart
+    const total = useSelector(getTotalPrice)
+    if (allProductsInCart.length == 0)
         return (
             <>Нет товара</>
         )
-    useEffect(() => {
-        let totalTemp = 0;
-        products.map((game: ICartProduct) => {
-            for (let i = 0; i < productsOriginal.length; i++) {
-                
-                if (productsOriginal[i].id == game.id){
-                    totalTemp += productsOriginal[i].price * game.quantity
-                    break;
-                }
-            }
-        })
-        setTotal(totalTemp)
-    }, [products])
 
-    const Products = () => products.map((game: ICartProduct) => <ProductItem key={game.id} product={game} products={products} setProduct={setProducts} />)
+    const Products = () => allProductsInCart.map((game: ICartProduct) => <ProductItem product={game} key={game.id} />)
 
     return (
         <div className='d-flex flex-column p-5 m-0 border'>

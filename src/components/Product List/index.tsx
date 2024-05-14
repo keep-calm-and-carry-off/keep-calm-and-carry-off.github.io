@@ -1,17 +1,19 @@
-import React, { FC, useCallback, useEffect, useRef, useState } from 'react'
-import ShortProductCard, { IShortProductCardProps } from '../ShortCardProduct'
+import React, { FC, useCallback, useRef } from 'react'
+import ShortProductCard from '../ShortCardProduct'
 import { createRandomProduct, Product } from '../../homeworks/ts1/3_write'
 import ButtonOtus from '../ButtonOtus'
 import * as styles from './styles.module.scss'
 import { useIntersectionObserver } from 'src/hooks/useIntersectionObserver'
 import { useProduct } from 'src/helpers/providers/ProductProvider'
+import { useSelector } from 'react-redux'
+import { getProducts } from 'src/stores/globalStore/product'
 
 export interface IProductListProps {
     initialProducts: Product[]
 }
 
 const ProductList: FC<IProductListProps> = ({ initialProducts }) => {
-    const { products } = useProduct()
+    const products = useSelector(getProducts)
     const lastProductRef = useRef<HTMLDivElement | null>(null)
     const showcaseRef = useRef<HTMLDivElement | null>(null)
 
@@ -45,7 +47,7 @@ const ProductList: FC<IProductListProps> = ({ initialProducts }) => {
                         ref={index === products.length - 1 ? lastProductRef : null}
                         className={`product-list-item ${index === products.length - 1 ? 'last-item' : ''}`}
                     >
-                        <ShortProdCardMemo description={'Большое и красочное описание товара, тут много текста'} image={product.photo} {...product} />
+                        <ShortProdCardMemo productId={product.id} />
                     </div>
                 ))}
             </div>

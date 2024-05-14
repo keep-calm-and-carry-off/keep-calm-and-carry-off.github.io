@@ -1,46 +1,40 @@
 import React, { useState, useEffect, ReactNode } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
 import Modal2 from '../Modal2';
 import { ProductCardEdit } from '../Product Card Edit/ProductCardEdit';
+import { AuthForm } from '../Forms/AuthForm/AuthForm';
+import { useModal } from 'src/hooks/useModal';
+import { useSearchParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { toggle } from 'src/stores/globalStore/globalStore';
 
 export const ModalURL: React.FC = () => {
-    const location = useLocation();
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [modalContent, setModalContent] = useState<ReactNode | null>(null)
-
+    const { getState: isOpen, close: closeModal } = useModal()
+    const [modalContent, setModalContent] = useState<ReactNode | null>(null);
+    const [searchParams] = useSearchParams()
+    const dispatch = useDispatch()
+    
     useEffect(() => {
-        const urlParams = new URLSearchParams(location.search);
-        const showModalParam = urlParams.get('showModal');
-        const contentParam = urlParams.get('content')
-        const productParam = urlParams.get('productId')
-        switch (contentParam) {
-            case 'auth': setModalContent(<>Авторизация</>);
-                break;
-            case 'cart': setModalContent(<>Корзина</>);
-                break;
-            case 'editProduct' : if (productParam) {
-                setModalContent(<ProductCardEdit productId={productParam}/>)
-                break;
+        if (searchParams.has('showModal')) {
+            dispatch(toggle(true))
+            const contentParam = searchParams.get('content')
+            const productParam = searchParams.get('productId')
+            switch (contentParam) {
+                case 'auth': setModalContent(<AuthForm />);
+                    break;
+                case 'cart': setModalContent(<>Корзина</>);
+                    break;
+                case 'editProduct': if (productParam) {
+                    setModalContent(<ProductCardEdit productId={productParam} />)
+                    break;
+                }
+                default: setModalContent(<>Ошибка. Содержимое окна не найдено. Проверьте корректность введенного URL</>);
             }
-            default: setModalContent(<>Ошибка. Содержимое окна не найдено. Проверьте корректность введенного URL</>);
         }
-        if (showModalParam && showModalParam === 'true') {
-            setIsOpen(true);
-        }
-    }, [location.search]);
-
-    const closeModal = () => {
-        setIsOpen(false);
-        const url = new URL(window.location.href);
-        url.searchParams.delete('showModal');
-        url.searchParams.delete('content');
-        url.searchParams.delete('productId');
-        window.history.replaceState({}, '', url.toString());
-    };
+    }, [searchParams])
 
     return (
         <>
-            {isOpen &&
+            {isOpen() &&
                 <Modal2 onClose={closeModal}>
                     {modalContent}
                 </Modal2>}

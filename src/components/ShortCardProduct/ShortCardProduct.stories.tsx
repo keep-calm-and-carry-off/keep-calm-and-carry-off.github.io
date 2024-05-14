@@ -22,29 +22,15 @@ const desc = 'Это игровой ноутбук, представляющий
 export const Default:StoryObj<IShortProductCardProps> = (args:IShortProductCardProps) => <ShortProductCard {...args}/>
 
 Default.args = {
-  price: 55555,
-  name: name,
-  description: desc,
-  image: img
+  productId: '1'
 };
 Default.parameters = {
   docs: {
     source: {
       code: `
       <ShortProductCard 
-        price={${Default.args.price}} 
-        name={'${Default.args.name}'} 
-        descripion={'${Default.args.description}'} 
-        image={'${Default.args.image}'}
+        productId='1'
       />`,
     },
   },
-};
-
-export const NoImage:StoryObj<IShortProductCardProps> = (args:IShortProductCardProps) => <ShortProductCard {...args}/>
-NoImage.args = {
-  price: 55555,
-  name: name,
-  description: desc,
-  image: undefined,
 };

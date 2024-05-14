@@ -28,14 +28,15 @@
     justify-content: space-between;
     align-items: center;
     background-color: var(--transparent-color-background);
+    color:var(--white-color-text)
 }
 .settings{
     font-size: 24px;
     cursor: pointer;
     transition: 0.2s linear;
     &:hover{
-        stroke-width: 1;
-        transform: rotate(180deg);
+        color:var(--secondary-color-text);
+        stroke-width: .1;
     }
     color: var(--white-color-background);
 }
@@ -44,4 +45,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.login{
+    color:var(--white-color-text);
+    margin-right: 4px;
+    background-color: var(--transparent-color-background);
 }
