@@ -17,8 +17,6 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-    env:
-      SRC_DIR: 'src'
 
     steps:
       - uses: actions/checkout@v3
@@ -32,23 +30,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Set environment variable for GitHub Actions
-        run: echo "REACT_APP_ASSETS_PATH=src" >> $GITHUB_ENV
-      # Запускаем тесты и линтер
-      # - name: Run tests and linter
-      #   run: npm run lint && npm test
+      # Собираем приложение
+      - name: Build Application
+        run: npm run build
 
-      # Собираем Storybook
-      - name: Build Storybook
-        run: npm run build-storybook
 
-      # Публикуем Storybook на Github Pages
-      - name: Deploy Storybook to Github Pages
+      # Публикуем приложение на Github Pages
+      - name: Deploy to Github Pages
         uses: JamesIves/github-pages-deploy-action@4.2.1
         with:
           branch: gh-pages
-          folder: storybook-static
-          commit-message: "Automatically publish Storybook"
+          folder: dist
 
       # Останавливаем выполнение строго при неудачных тестах
       - name: Fail on failed tests
