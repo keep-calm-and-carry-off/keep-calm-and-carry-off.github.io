@@ -1,21 +1,21 @@
-import React, { FC, useCallback, useRef } from 'react'
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react'
 import ShortProductCard from '../ShortCardProduct'
 import { createRandomProduct, Product } from '../../homeworks/ts1/3_write'
 import ButtonOtus from '../ButtonOtus'
 import * as styles from './styles.module.scss'
 import { useIntersectionObserver } from 'src/hooks/useIntersectionObserver'
-import { useProduct } from 'src/helpers/providers/ProductProvider'
+import { IProduct } from 'src/api/types'
 import { useSelector } from 'react-redux'
-import { getProducts } from 'src/stores/globalStore/product'
+import { getGamesByCatId } from 'src/stores/sagaStore/slices/products'
 
 export interface IProductListProps {
-    initialProducts: Product[]
+    categoryId:string
 }
 
-const ProductList: FC<IProductListProps> = ({ initialProducts }) => {
-    const products = useSelector(getProducts)
+const ProductList: FC<IProductListProps> = ({ categoryId }) => {
     const lastProductRef = useRef<HTMLDivElement | null>(null)
     const showcaseRef = useRef<HTMLDivElement | null>(null)
+    const products = useSelector(getGamesByCatId(categoryId))
 
     const handleIntersection = () => {
         console.log('intersaction')
@@ -34,14 +34,14 @@ const ProductList: FC<IProductListProps> = ({ initialProducts }) => {
     }
 
     const handleShowMoreClick = useCallback(() => {
-        //handleIntersection()
+        handleIntersection()
         scrollToBottom()
     }, [handleIntersection, scrollToBottom])
 
     return (
         <div className={styles.wrapper}>
             <div ref={showcaseRef} className={styles.showcase} style={{ height: '600px', overflowY: 'auto' }}>
-                {products.map((product: Product, index: number) => (
+                {products.map((product: IProduct, index: number) => (
                     <div
                         key={product.id}
                         ref={index === products.length - 1 ? lastProductRef : null}

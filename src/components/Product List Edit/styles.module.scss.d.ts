@@ -2,6 +2,7 @@ declare namespace StylesModuleScssNamespace {
   export interface IStylesModuleScss {
     gameBody: string;
     gameContainer: string;
+    gameDesc: string;
     gamePhoto: string;
     gameTitle: string;
     productsContainer: string;
