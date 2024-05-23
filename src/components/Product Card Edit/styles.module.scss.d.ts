@@ -1,7 +1,11 @@
 declare namespace StylesModuleScssNamespace {
   export interface IStylesModuleScss {
+    form: string;
     formContainer: string;
+    formInput: string;
     formRow: string;
+    formTitle: string;
+    inputMui: string;
   }
 }
 

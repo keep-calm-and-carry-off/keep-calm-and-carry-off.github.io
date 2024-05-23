@@ -1,1 +1,1 @@
-export { ModalURL } from './ModalURL'
+export { ModalURL } from './ModalURL';

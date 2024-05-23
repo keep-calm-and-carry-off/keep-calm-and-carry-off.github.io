@@ -1,93 +1,165 @@
-import React, { Dispatch, FC, SetStateAction, useEffect, useLayoutEffect, useState } from 'react'
-import { useProduct } from 'src/helpers/providers/ProductProvider'
-import { Product } from 'src/homeworks/ts1/3_write'
-import { useForm } from 'react-hook-form';
-import * as styles from './styles.module.scss'
-import { Typography } from '@mui/material';
+import React, { Dispatch, FC, SetStateAction, useEffect, useLayoutEffect, useState } from 'react';
+import { useProduct } from 'src/helpers/providers/ProductProvider';
+import { Product } from 'src/homeworks/ts1/3_write';
+import { Controller, useForm } from 'react-hook-form';
+import * as styles from './styles.module.scss';
+import { Box, MenuItem, TextField, Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { getCategories, getGameById, updateProductRequest } from 'src/stores/sagaStore/slices/products';
+import { useDispatch } from 'react-redux';
+import { ICategory } from 'src/api/types';
+import ButtonOtus from '../ButtonOtus';
+import { useModal } from 'src/hooks/useModal';
 
 interface IProductCardEdit {
-    productId: string
+  productId: string;
 }
 
-type FormData = Omit<Product, 'id' | 'createdAt'>
-
+type FormData = {
+  id: string;
+  name: string;
+  photo: string;
+  desc?: string;
+  oldPrice?: number;
+  price: number;
+  categoryId: string;
+};
 
 export const ProductCardEdit: FC<IProductCardEdit> = (props) => {
-    const { products, setProducts } = useProduct()
-    const [product, setProduct] = useState<Product | null>(null)
+  const product = useSelector(getGameById(props.productId));
+  const dispatch = useDispatch();
+  const categories = useSelector(getCategories);
+  const modal = useModal();
 
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<FormData>({
+    mode: 'onBlur',
+    defaultValues: { ...product },
+  });
 
-    useEffect(() => {
-        let tempItem: Product | null = null
-        for (let i = 0; i < products.length; i++) {
-            if (products[i].id == props.productId) {
-                tempItem = products[i]
-                break;
-            }
-        }
-        setProduct(tempItem)
-    }, [])
+  const handleFormSubmit = (data: FormData) => {
+    dispatch(updateProductRequest(data));
+    modal.close();
+  };
 
+  return (
+    <>
+      <Typography variant="h6">Редактирование товара</Typography>
+      {product ? (
+        <form className={styles.form} onSubmit={handleSubmit(handleFormSubmit)}>
+          <div className="d-flex flex-row">
+            <Box className={styles.formInput}>
+              <Controller
+                name="name"
+                control={control}
+                rules={{ required: 'Поле обязательно для заполнения' }}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    className={styles.inputMui}
+                    type="text"
+                    label="Наименование"
+                    variant="outlined"
+                    fullWidth
+                  />
+                )}
+              />
+              {errors.name && <span>{errors.name.message}</span>}
+            </Box>
+            <Box className={styles.formInput}>
+              <Controller
+                name="photo"
+                control={control}
+                rules={{ required: 'Поле обязательно для заполнения' }}
+                render={({ field }) => (
+                  <TextField {...field} type="text" label="Ссылка на фото" variant="outlined" fullWidth />
+                )}
+              />
+              {errors.photo && <span>{errors.photo.message}</span>}
+            </Box>
+          </div>
 
+          <Box className={styles.formInput}>
+            <Controller
+              name="desc"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  className={styles.inputMui}
+                  type="text"
+                  label="Описание"
+                  variant="outlined"
+                  fullWidth
+                />
+              )}
+            />
+          </Box>
+          <div className="d-flex flex-row">
+            <Box className={styles.formInput}>
+              <Controller
+                name="oldPrice"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    className={styles.inputMui}
+                    type="number"
+                    label="Старая цена"
+                    variant="outlined"
+                    fullWidth
+                  />
+                )}
+              />
+            </Box>
+            <Box className={styles.formInput}>
+              <Controller
+                name="price"
+                control={control}
+                rules={{ required: 'Поле обязательно для заполнения' }}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    className={styles.inputMui}
+                    type="number"
+                    label="Цена в руб."
+                    variant="outlined"
+                    fullWidth
+                  />
+                )}
+              />
+              {errors.price && <span>{errors.price.message}</span>}
+            </Box>
+          </div>
 
-    const form = useForm<FormData>()
-
-    useEffect(() => {
-        if (product) form.reset(product);
-    }, [product])
-
-    const handleFormSubmit = (data: FormData) => {
-        setProduct(prevProduct => {
-            if (!prevProduct) return null;
-            const updatedProduct = { ...prevProduct, ...data };
-            const updatedProducts = products.map((p: Product) =>
-                p.id === prevProduct.id ? updatedProduct : p
-            );
-            setProducts(updatedProducts);
-            return updatedProduct;
-        });
-    };
-
-    const clearForm = () => {
-        form.reset();
-    };
-    return (
-        <>
-            <Typography variant='h6'>Редактирование товара</Typography>
-            {product ?
-
-                <form className={styles.formContainer} onSubmit={form.handleSubmit(handleFormSubmit)}>
-                    <label className={styles.formRow}>
-                        Название:
-                        <input type="text" {...form.register('name', { required: true })} />
-                    </label>
-                    <label className={styles.formRow}>
-                        Фото:
-                        <input type="text" {...form.register('photo', { required: true })} />
-                    </label>
-                    <label className={styles.formRow}>
-                        Описание:
-                        <textarea {...form.register('desc')} />
-                    </label>
-                    <label className={styles.formRow}>
-                        Старая цена:
-                        <input type="number" {...form.register('oldPrice')} />
-                    </label>
-                    <label className={styles.formRow}>
-                        Цена:
-                        <input type="number" {...form.register('price', { required: true })} />
-                    </label>
-                    <label className={styles.formRow}>
-                        Категория:
-                        <select {...form.register('category', { required: true })}>
-                            <option value="category1">Категория 1</option>
-                            <option value="category2">Категория 2</option>
-                        </select>
-                    </label>
-                    <button type="submit">Сохранить</button>
-                    <button type="button" onClick={clearForm}>Очистить форму</button>
-                </form> : <div>Неизвестный товар</div>
-            }
-        </>
-    );
-}
+          <Box className={styles.formInput}>
+            <Controller
+              name="categoryId"
+              control={control}
+              rules={{ required: 'Поле обязательно для заполнения' }}
+              render={({ field }) => (
+                <TextField {...field} className={styles.inputMui} label="Категория" variant="outlined" fullWidth select>
+                  {categories.map((option: ICategory) => (
+                    <MenuItem key={option.id} value={option.id}>
+                      {option.name}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              )}
+            />
+            {errors.categoryId && <span>{errors.categoryId.message}</span>}
+          </Box>
+          <hr />
+          <ButtonOtus type="submit" fullWidth>
+            Изменить игру
+          </ButtonOtus>
+        </form>
+      ) : (
+        <div>Неизвестный товар</div>
+      )}
+    </>
+  );
+};

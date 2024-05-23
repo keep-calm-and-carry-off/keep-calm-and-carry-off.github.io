@@ -2,8 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { useSearchParams } from "react-router-dom"
-import { toggle } from "src/stores/globalStore/globalStore"
-import { selectorModal } from "src/stores/globalStore/modal"
+import { selectorModal, toggle } from "src/stores/sagaStore/slices/modal"
 
 export const useModal = () => {
     const [searchParams, setSearchParams] = useSearchParams()
