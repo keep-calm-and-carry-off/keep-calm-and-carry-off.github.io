@@ -18,10 +18,9 @@ export default {
 } as Meta;
 
 const Template: Story<IShoppingCartButtonProps> = (args: IShoppingCartButtonProps) => {
-  const [count, setCount] = useState(args.count);
   return (
     <div style={{width:'200px'}}>
-      <ShoppingCartButton {...args} count={count} setCount={setCount} />
+      <ShoppingCartButton productId='1' />
     </div>
 
   )
@@ -29,5 +28,5 @@ const Template: Story<IShoppingCartButtonProps> = (args: IShoppingCartButtonProp
 
 export const Default = Template.bind({});
 Default.args = {
-  count: 0
+  productId: '1'
 } as IShoppingCartButtonProps;

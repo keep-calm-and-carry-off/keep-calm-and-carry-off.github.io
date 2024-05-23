@@ -3,7 +3,7 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import LanguageSwitcher from './index';
-import Contacts from '../Contacts';
+import { Contacts } from '../Contacts';
 
 export default {
   title: 'Переключение языка',
