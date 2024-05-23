@@ -52,7 +52,6 @@ function* fetchProductsSaga(action: ReturnType<typeof fetchProductsRequest>) {
 
 // Сага для получения списка категорий
 function* fetchCategoriesSaga(action: ReturnType<typeof fetchCategoriesRequest>) {
-  console.log('fetchCategoriesSaga');
   try {
     const response: TypeProductsResponse = yield call(serverApi.run, 'categories', 'GET', null);
     if (!response.ok) {

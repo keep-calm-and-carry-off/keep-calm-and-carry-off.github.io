@@ -16,7 +16,6 @@ export const OrderItem: FC<{ order: IOrder; dataPosition: string }> = ({ order, 
     (total: number, product: IOrderProduct) => total + product.quantity * product.product.price,
     0
   );
-  console.log(order);
   return (
     <div className={styles.orderItemContainer}>
       <div className="d-flex flex-row align-items-space-around">

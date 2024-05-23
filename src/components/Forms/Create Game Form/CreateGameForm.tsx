@@ -41,7 +41,6 @@ export const CreateGameForm = () => {
   const categories = useSelector(getCategories);
 
   const customHandleSubmit = (data: Inputs) => {
-    console.log(data);
     dispatch(addProductRequest({ ...data }));
     reset();
     modal.close();
