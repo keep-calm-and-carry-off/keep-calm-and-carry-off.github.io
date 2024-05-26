@@ -1,12 +1,10 @@
 import { Typography } from '@mui/material';
-import React, { FC, useState } from 'react';
-import { IProduct } from 'src/api/types';
+import React, { FC } from 'react';
 import ButtonOtus from '../../ButtonOtus';
 import { Link } from 'react-router-dom';
 import { ProductListEdit } from 'src/components/Product List Edit';
 
 export const ProductsControl: FC = () => {
-  const [products, setProducts] = useState<IProduct[]>([]);
   const linkCreate = `?showModal=true&content=createGame`;
 
   return (

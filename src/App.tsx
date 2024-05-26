@@ -11,16 +11,35 @@ import Header from './components/Header';
 import { Navigation, PrivateRoute } from './components/Navigation';
 import { Contacts } from './components/Contacts';
 import { useDispatch, useSelector } from 'react-redux';
-import { getError, setAppInit } from './stores/sagaStore/slices/app';
+import { getError, setAppInit, setError } from './stores/sagaStore/slices/app';
 import { ModalURL } from './components/Modal URL';
+import useNotification from 'antd/es/notification/useNotification';
 
 const App: FC = () => {
   const dispatch = useDispatch();
   const error = useSelector(getError);
 
+  const [api, contextHolder] = useNotification();
+  const openNotificationWithIcon = (msg: string) => {
+    api.error({
+      message: 'Ошибка',
+      description: msg,
+      placement: 'top',
+      duration: 5,
+    });
+  };
+
   useEffect(() => {
-    console.log(error);
-  }, [error]);
+    if (error?.message.length > 0) {
+      openNotificationWithIcon(error.message);
+      dispatch(
+        setError({
+          message: '',
+          code: '',
+        })
+      );
+    }
+  }, [error, dispatch]);
 
   useEffect(() => {
     dispatch(setAppInit());
@@ -33,6 +52,7 @@ const App: FC = () => {
         <I18nextProvider i18n={i18n}>
           <ThemeProvider>
             <div className="App">
+              {contextHolder}
               <Contacts />
               <Header>
                 <Navigation />

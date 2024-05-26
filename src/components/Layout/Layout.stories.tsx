@@ -12,10 +12,10 @@ export default {
       },
     },
   },
-  tags: ['autodocs']
+  tags: ['autodocs'],
 } as Meta;
 
-export const  Default:StoryObj = (args:ILayout) => <Layout {...args}/>
+export const Default: StoryObj = (args: ILayout) => <Layout {...args} />;
 Default.args = {
   children: null,
 };

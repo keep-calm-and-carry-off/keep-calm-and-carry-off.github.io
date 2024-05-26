@@ -191,13 +191,13 @@ export const resources = {
           Friday: 'Friday',
           Saturday: 'Saturday',
           Sunday: 'Sunday',
-        }
+        },
       },
-      another:{
-        waitYou:'Waiting for you at:',
-        address:'Moscow, Bolshaya Lubyanka st., 2',
-        call:'Call:',
-      }
+      another: {
+        waitYou: 'Waiting for you at:',
+        address: 'Moscow, Bolshaya Lubyanka st., 2',
+        call: 'Call:',
+      },
     },
   },
   ru: {
@@ -393,11 +393,11 @@ export const resources = {
           Sunday: 'Воскресенье',
         },
       },
-      another:{
-        waitYou:'Ждем вас по адресу:',
-        address:'Москва, ул. Большая Лубянка, 2',
-        call:'Позвонить нам:',
-      }
+      another: {
+        waitYou: 'Ждем вас по адресу:',
+        address: 'Москва, ул. Большая Лубянка, 2',
+        call: 'Позвонить нам:',
+      },
     },
   },
 };

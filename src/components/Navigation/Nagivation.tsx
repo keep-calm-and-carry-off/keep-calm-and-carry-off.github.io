@@ -19,14 +19,14 @@ export const Navigation: FC = () => {
         setLinks({
           '/': 'Главная',
           '/dashboard': 'Панель управления',
-          '/orders':'Заказы',
+          '/orders': 'Заказы',
           '/profile': 'Профиль',
           '/cart': 'Корзина',
         });
       } else {
         setLinks({
           '/': 'Главная',
-          '/orders':'Заказы',
+          '/orders': 'Заказы',
           '/profile': 'Профиль',
           '/cart': 'Корзина',
         });

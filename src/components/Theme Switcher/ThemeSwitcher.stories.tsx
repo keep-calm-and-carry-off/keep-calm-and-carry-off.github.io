@@ -18,9 +18,8 @@ export default {
 } as Meta;
 
 export const Default: StoryObj = () => {
-    return <ThemeSwitcher />;
-}
-
+  return <ThemeSwitcher />;
+};
 
 Default.parameters = {
   docs: {

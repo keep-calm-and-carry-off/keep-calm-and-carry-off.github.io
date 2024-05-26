@@ -1,1 +1,1 @@
-export { ProductCategories } from './ProductCategories'
+export { ProductCategories } from './ProductCategories';

@@ -3,10 +3,10 @@ import { Controller, useForm } from 'react-hook-form';
 import * as styles from './styles.module.scss';
 import { TextField, Box, MenuItem } from '@mui/material';
 import ButtonOtus from 'src/components/ButtonOtus';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from 'src/hooks/useModal';
 import { addCategoryRequest, addProductRequest, getCategories } from 'src/stores/sagaStore/slices/products';
-import { useSelector } from 'react-redux';
+
 import { ICategory } from 'src/api/types';
 
 type Inputs = {

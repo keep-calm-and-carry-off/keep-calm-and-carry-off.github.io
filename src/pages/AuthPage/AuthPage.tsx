@@ -1,5 +1,5 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useEffect } from 'react';
 
-export const AuthPage:FC = () => {
-    return <>Авторизация</>
-}
+export const AuthPage: FC = () => {
+  return <>Авторизация</>;
+};

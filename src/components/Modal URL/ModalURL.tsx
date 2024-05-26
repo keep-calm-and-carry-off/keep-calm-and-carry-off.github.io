@@ -18,29 +18,31 @@ export const ModalURL: React.FC = () => {
   useEffect(() => {
     if (searchParams.has('showModal')) {
       dispatch(toggle(true));
+      let content = <>Ошибка. Содержимое окна не найдено. Проверьте корректность введенного URL</>;
       const contentParam = searchParams.get('content');
       const productParam = searchParams.get('productId');
       switch (contentParam) {
         case 'auth':
-          setModalContent(<AuthMainComponent />);
+          content = <AuthMainComponent />;
           break;
         case 'cart':
-          setModalContent(<>Корзина</>);
+          content = <>Корзина</>;
           break;
         case 'editProduct':
           if (productParam) {
-            setModalContent(<ProductCardEdit productId={productParam} />);
-            break;
+            content = <ProductCardEdit productId={productParam} />;
           }
+          break;
         case 'createCategory':
-          setModalContent(<CreateCategoryForm />);
+          content = <CreateCategoryForm />;
           break;
         case 'createGame':
-          setModalContent(<CreateGameForm />);
+          content = <CreateGameForm />;
           break;
         default:
-          setModalContent(<>Ошибка. Содержимое окна не найдено. Проверьте корректность введенного URL</>);
+          content;
       }
+      setModalContent(content);
     }
   }, [searchParams]);
 

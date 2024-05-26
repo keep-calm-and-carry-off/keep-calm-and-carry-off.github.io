@@ -1,7 +1,6 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import * as styles from './styles.module.scss';
-
 
 type Inputs = {
   name: string;
@@ -17,17 +16,17 @@ export const ProductForm = () => {
     reset,
     formState: { errors, isValid },
   } = useForm<Inputs>({
-    mode: "onBlur",
+    mode: 'onBlur',
     defaultValues: {
-      name: "",
-      description: "",
+      name: '',
+      description: '',
       price: 0,
-      img: "",
+      img: '',
     },
   });
 
   const customHandleSubmit = (values: any) => {
-    alert(JSON.stringify(values))
+    alert(JSON.stringify(values));
 
     reset();
   };
@@ -41,47 +40,51 @@ export const ProductForm = () => {
         <input
           id="name"
           type="text"
-          {...register("name", {
+          {...register('name', {
             required: true,
             minLength: {
               value: 3,
-              message: "Минимально допустимо 3 символа",
+              message: 'Минимально допустимо 3 символа',
             },
           })}
         />
-        {errors.name && <p style={{ color: "red" }}>{errors.name.message}</p>}
+        {errors.name && <p style={{ color: 'red' }}>{errors.name.message}</p>}
       </div>
       <div className={styles.formInput}>
         <label htmlFor="description">Описание</label>
-        <input id="description"
+        <input
+          id="description"
           type="text"
-          {...register("description", {
+          {...register('description', {
             required: true,
             minLength: {
               value: 3,
-              message: "Минимально допустимо 3 символа",
+              message: 'Минимально допустимо 3 символа',
             },
-          })} />
-        {errors.description && <p style={{ color: "red" }}>{errors.description.message}</p>}
+          })}
+        />
+        {errors.description && <p style={{ color: 'red' }}>{errors.description.message}</p>}
       </div>
       <div className={styles.formInput}>
         <label htmlFor="price">Цена</label>
-        <input id="price"
+        <input
+          id="price"
           type="number"
-          {...register("price", {
+          {...register('price', {
             required: true,
-          })} />
-        {errors.price && <p style={{ color: "red" }}>{errors.price.message}</p>}
+          })}
+        />
+        {errors.price && <p style={{ color: 'red' }}>{errors.price.message}</p>}
       </div>
       <div className={styles.formInput}>
         <label htmlFor="img">Ссылка на фото</label>
-        <input id="img"
-          type="text"
-          {...register("img")} />
-        {errors.img && <p style={{ color: "red" }}>{errors.img.message}</p>}
+        <input id="img" type="text" {...register('img')} />
+        {errors.img && <p style={{ color: 'red' }}>{errors.img.message}</p>}
       </div>
       <hr />
-      <button type="submit" disabled={!isValid}>Отправить</button>
+      <button type="submit" disabled={!isValid}>
+        Отправить
+      </button>
     </form>
   );
 };

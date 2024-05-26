@@ -3,7 +3,6 @@ import React, { FC } from 'react';
 import { CategoryControl } from 'src/components/Admin Tabs/Category Control';
 import { ProductsControl } from 'src/components/Admin Tabs/Product Control';
 import { PageContainer } from 'src/components/Page Container';
-import { ProductListEdit } from 'src/components/Product List Edit';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -51,10 +50,10 @@ export const DashboardPage: FC = () => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <CategoryControl/>
+        <CategoryControl />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <ProductsControl/>
+        <ProductsControl />
       </TabPanel>
     </PageContainer>
   );

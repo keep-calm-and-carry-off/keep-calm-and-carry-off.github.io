@@ -4,9 +4,9 @@ import { Product } from 'src/homeworks/ts1/3_write';
 import { Controller, useForm } from 'react-hook-form';
 import * as styles from './styles.module.scss';
 import { Box, MenuItem, TextField, Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getCategories, getGameById, updateProductRequest } from 'src/stores/sagaStore/slices/products';
-import { useDispatch } from 'react-redux';
+
 import { ICategory } from 'src/api/types';
 import ButtonOtus from '../ButtonOtus';
 import { useModal } from 'src/hooks/useModal';

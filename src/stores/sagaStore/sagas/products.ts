@@ -151,10 +151,16 @@ function* watchFetchCategories() {
 }
 
 function* watchAddCategory() {
-  yield takeLatest(addCategoryRequest.type, addCategorySaga)
+  yield takeLatest(addCategoryRequest.type, addCategorySaga);
 }
 
 // Главная сага для всех вотчеров
 export default function* productsSaga() {
-  yield all([watchFetchProducts(), watchAddProduct(), watchUpdateProduct(), watchFetchCategories(), watchAddCategory()]);
+  yield all([
+    watchFetchProducts(),
+    watchAddProduct(),
+    watchUpdateProduct(),
+    watchFetchCategories(),
+    watchAddCategory(),
+  ]);
 }

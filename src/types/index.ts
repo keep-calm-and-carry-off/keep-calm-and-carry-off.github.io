@@ -1,4 +1,4 @@
-import { IProduct } from "src/api/types";
+import { IProduct } from 'src/api/types';
 
 export type ProfileState = {
   id: string;
@@ -44,7 +44,7 @@ export type AuthState = {
   id: string;
 };
 
-interface ICartState extends ICartProduct {}
+type ICartState = ICartProduct;
 
 export type ProductState = Product[];
 

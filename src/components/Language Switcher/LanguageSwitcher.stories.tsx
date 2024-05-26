@@ -22,11 +22,12 @@ export const Default: StoryObj = () => {
   return (
     <>
       <Contacts />
-      <div style={{ padding: '8px' }}><LanguageSwitcher /></div>
-
+      <div style={{ padding: '8px' }}>
+        <LanguageSwitcher />
+      </div>
     </>
-  )
-}
+  );
+};
 Default.parameters = {
   docs: {
     source: {

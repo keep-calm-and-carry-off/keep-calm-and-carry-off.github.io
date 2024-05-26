@@ -1,25 +1,25 @@
-import React, { useLayoutEffect, useState, ReactNode } from 'react'
+import React, { useLayoutEffect, useState, ReactNode } from 'react';
 
 export interface CollapseProps {
-  opened: boolean
-  children: ReactNode
+  opened: boolean;
+  children: ReactNode;
 }
 
 const Collapse: React.FC<CollapseProps> = ({ opened, children }) => {
-  const [height, setHeight] = useState<number | null>(null)
+  const [height, setHeight] = useState<number | null>(null);
 
   useLayoutEffect(() => {
     const contentHeight = contentRef.current?.scrollHeight || null;
-    setHeight(contentHeight)
-  }, [opened])
+    setHeight(contentHeight);
+  }, [opened]);
 
-  const contentRef = React.createRef<HTMLDivElement>()
+  const contentRef = React.createRef<HTMLDivElement>();
 
   const handleTransitionEnd = () => {
     if (!opened) {
-      setHeight(null)
+      setHeight(null);
     }
-  }
+  };
 
   return (
     <div
@@ -32,7 +32,7 @@ const Collapse: React.FC<CollapseProps> = ({ opened, children }) => {
     >
       <div ref={contentRef}>{children}</div>
     </div>
-  )
-}
+  );
+};
 
-export default Collapse
+export default Collapse;

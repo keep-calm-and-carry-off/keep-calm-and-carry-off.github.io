@@ -12,10 +12,10 @@ export default {
       },
     },
   },
-  tags: ['autodocs']
+  tags: ['autodocs'],
 } as Meta;
 
-export const  Default:StoryObj = (args:IHeaderProps) => <Header {...args}/>
+export const Default: StoryObj = (args: IHeaderProps) => <Header {...args} />;
 Default.args = {
   style: { border: '1px solid #10002b' },
   children: null,

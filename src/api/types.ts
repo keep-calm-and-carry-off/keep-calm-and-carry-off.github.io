@@ -40,6 +40,16 @@ export interface IProfileResponseAuth {
   __v: number;
 }
 
+export type ChangePasswordBodyRq = {
+  password: string;
+  newPassword: string;
+};
+
+export type ChangePasswordResult = {
+  success: boolean;
+};
+export type ChangePwdResponse = IResponse<ChangePasswordResult | IDataErrorResponse>;
+
 export type TypeAuthResponse = IResponse<IAuthSuccessResponse | IDataErrorResponse>;
 
 // Тип данных профиля
@@ -137,9 +147,9 @@ export interface IOrderCreateRequest {
 }
 
 export type TypeOrderResponseSuccess = {
-  data: IOrder[],
-  pagination: IPagination,
-  sorting:ISorting
+  data: IOrder[];
+  pagination: IPagination;
+  sorting: ISorting;
 };
 export type TypeOrderResponseCreate = IResponse<IOrder | IDataErrorResponse>;
 

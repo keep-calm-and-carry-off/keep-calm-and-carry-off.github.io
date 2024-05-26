@@ -13,11 +13,13 @@ export default {
   },
 } as Meta;
 
-export const Default: StoryObj<IModal> = (args:IModal) => {
+export const Default: StoryObj<IModal> = (args: IModal) => {
   const [visible, setVisible] = useState(args.visible);
 
   return (
-    <div style={{display:'flex', position:'relative', height:'600px', alignItems:'center', justifyContent:'center'}}>
+    <div
+      style={{ display: 'flex', position: 'relative', height: '600px', alignItems: 'center', justifyContent: 'center' }}
+    >
       <ButtonOtus onClick={() => setVisible(true)}>Открыть Modal</ButtonOtus>
       <Modal {...args} visible={visible} onClose={() => setVisible(false)} />
     </div>

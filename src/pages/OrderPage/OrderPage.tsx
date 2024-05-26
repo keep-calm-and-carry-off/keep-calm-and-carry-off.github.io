@@ -5,7 +5,7 @@ import { PageContainer } from 'src/components/Page Container';
 export const OrderPage: FC = () => {
   return (
     <PageContainer>
-      <ListOrders/>
+      <ListOrders />
     </PageContainer>
   );
   // return <EditProfileForm />
