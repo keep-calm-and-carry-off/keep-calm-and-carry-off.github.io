@@ -35,9 +35,20 @@
     display: block;
     max-height: 210px;
     margin-bottom: 8px;
+    overflow: hidden;
     img{
         width: 100%;
     }
+}
+.game-desc{
+    display: block;
+    width: 100%;
+    color: var(--grey-color-text);
+    overflow: hidden;
+    text-wrap:nowrap;
+    text-align: justify;
+    padding: 0px 4px;
+    text-overflow: ellipsis;
 }
 
 .products-container {

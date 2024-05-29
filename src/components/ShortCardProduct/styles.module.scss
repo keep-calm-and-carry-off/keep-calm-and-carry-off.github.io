@@ -52,6 +52,9 @@
     text-align: justify;
     line-height: 19.5px;
     text-align: center;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    overflow: hidden;
 }
 
 .description {
@@ -60,6 +63,9 @@
     padding: 0px 8px;
     text-align: justify;
     transition: 0.2s linear;
+    height: 2.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .price {

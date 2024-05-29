@@ -1,12 +1,12 @@
 $primaryColor: black;
-$secondaryColor: #A2A6B0;
+$secondaryColor: #f5f7fa;
 $whiteColor: white;
 $infoColor: #0156FF;
 $transparentColor: transparent;
 $lightColor: #F5F7FF;
 $greyColor: #CACDD8;
 $yellowColor: #FFB800;
-$successColor: #78a962;
+$successColor: #3fd969;
 $primaryColorTransparent: rgba(0, 0, 0, 0.5);
 
 $primaryColorDarkMode: white;
@@ -129,7 +129,7 @@ $maxWidth: 1400px;
 
 div {
     color: var(--primary-color-text);
-    background-color: var(--white-color-background);
+    background-color: var(--transparent-color-background);
 }
 
 :global(*::-webkit-scrollbar) {

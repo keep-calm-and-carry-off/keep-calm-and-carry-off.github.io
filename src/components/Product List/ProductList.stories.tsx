@@ -26,5 +26,5 @@ const arrProducts = () => {
 
 export const Default: StoryObj<IProductListProps> = (args: IProductListProps) => <ProductList {...args} />
 Default.args = {
-    initialProducts: arrProducts()
+    categoryId: ''
 } as IProductListProps;  
