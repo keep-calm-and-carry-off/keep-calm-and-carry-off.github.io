@@ -12,11 +12,11 @@ export default {
       },
     },
   },
-  tags: ['autodocs']
+  tags: ['autodocs'],
 } as Meta;
 
-export const Default:StoryObj<SVGProps<SVGElement>> = (args: SVGProps<SVGElement>) => <Logo {...args}/>
+export const Default: StoryObj<SVGProps<SVGElement>> = (args: SVGProps<SVGElement>) => <Logo {...args} />;
 Default.args = {
-  height:60,
-  width:60
-} as SVGProps<SVGElement>;  
+  height: 60,
+  width: 60,
+} as SVGProps<SVGElement>;

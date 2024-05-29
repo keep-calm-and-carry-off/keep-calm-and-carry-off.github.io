@@ -1,34 +1,34 @@
-import { useEffect } from "react"
+import { useEffect } from 'react';
 
 const useIntersectionObserver = (
-    targetRef: React.RefObject<HTMLElement | null>,
-    onIntersect: () => void,
-    threshold: number = 1.0
+  targetRef: React.RefObject<HTMLElement | null>,
+  onIntersect: () => void,
+  threshold = 1.0
 ) => {
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries: IntersectionObserverEntry[]) => {
-                entries.forEach((entry: IntersectionObserverEntry) => {
-                    if (entry.isIntersecting) {
-                        onIntersect()
-                        observer.unobserve(entry.target)
-                    }
-                })
-            },
-            { threshold }
-        )
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries: IntersectionObserverEntry[]) => {
+        entries.forEach((entry: IntersectionObserverEntry) => {
+          if (entry.isIntersecting) {
+            onIntersect();
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold }
+    );
 
-        const target = targetRef.current
-        if (target) {
-            observer.observe(target)
-        }
+    const target = targetRef.current;
+    if (target) {
+      observer.observe(target);
+    }
 
-        return () => {
-            if (target) {
-                observer.unobserve(target)
-            }
-        }
-    }, [targetRef, onIntersect, threshold])
-}
+    return () => {
+      if (target) {
+        observer.unobserve(target);
+      }
+    };
+  }, [targetRef, onIntersect, threshold]);
+};
 
-export { useIntersectionObserver }
+export { useIntersectionObserver };

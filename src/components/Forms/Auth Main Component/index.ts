@@ -1,1 +1,1 @@
-export { AuthMainComponent } from './AuthMainComponent'
+export { AuthMainComponent } from './AuthMainComponent';

@@ -1,1 +1,1 @@
-export { CreateGameForm } from './CreateGameForm'
+export { CreateGameForm } from './CreateGameForm';

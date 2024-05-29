@@ -1,1 +1,1 @@
-export { ProductCardEdit } from './ProductCardEdit'
+export { ProductCardEdit } from './ProductCardEdit';

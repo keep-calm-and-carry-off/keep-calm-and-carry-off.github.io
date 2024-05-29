@@ -1,1 +1,1 @@
-export { CategoryControl } from './CategoryControl'
+export { CategoryControl } from './CategoryControl';

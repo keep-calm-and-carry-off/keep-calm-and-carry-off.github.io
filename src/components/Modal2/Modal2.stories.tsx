@@ -13,16 +13,34 @@ export default {
 } as Meta;
 
 export const Default: StoryObj<IModal2> = (args: IModal2) => {
-  const [show, setIsShow] = useState(false)
-  const [inputVal, setInputVal] = useState('')
+  const [show, setIsShow] = useState(false);
+  const [inputVal, setInputVal] = useState('');
   return (
     <>
-      <div style={{display:'flex', justifyContent:'center'}}>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <ButtonOtus onClick={() => setIsShow(true)}>Открыть Modal</ButtonOtus>
-        <input type='text' value={inputVal} style={{marginLeft:'8px',width:'250px'}} placeholder='Введи значение для модального окна' onChange={(e: ChangeEvent<HTMLInputElement>) => setInputVal(e.target.value)} />
+        <input
+          type="text"
+          value={inputVal}
+          style={{ marginLeft: '8px', width: '250px' }}
+          placeholder="Введи значение для модального окна"
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setInputVal(e.target.value)}
+        />
       </div>
-      <div style={{ display: 'flex', position: 'relative', height: '600px', alignItems: 'center', justifyContent: 'center' }}>
-        {show && <Modal2 {...args} onClose={() => setIsShow(false)} ><p>{inputVal}</p></Modal2>}
+      <div
+        style={{
+          display: 'flex',
+          position: 'relative',
+          height: '600px',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        {show && (
+          <Modal2 {...args} onClose={() => setIsShow(false)}>
+            <p>{inputVal}</p>
+          </Modal2>
+        )}
       </div>
     </>
   );

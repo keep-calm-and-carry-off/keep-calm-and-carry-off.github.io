@@ -27,7 +27,9 @@ export const ProductListEdit: FC = () => {
     return (
       <div className={styles.gameContainer + ' col-3'} key={game.id}>
         <div className={styles.gameBody}>
-          <div className={styles.gameTitle} title={game.name}>{game.name}</div>
+          <div className={styles.gameTitle} title={game.name}>
+            {game.name}
+          </div>
           <div className={styles.gamePhoto}>
             <img src={game.photo} alt={game.name} />
           </div>

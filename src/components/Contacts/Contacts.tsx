@@ -6,9 +6,9 @@ import ThemeSwitcher from '../Theme Switcher';
 import { CgMoreO } from 'react-icons/cg';
 import Modal2 from '../Modal2';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { AiOutlineLogout, AiOutlineUser } from 'react-icons/ai';
-import { useDispatch } from 'react-redux';
+
 import { getIsAuth, getProfile, logout } from 'src/stores/sagaStore/slices/user';
 
 export const Contacts: FC = () => {

@@ -1,2 +1,2 @@
-export { Navigation } from './Nagivation'
-export { PrivateRoute } from './PrivateRoute'
+export { Navigation } from './Nagivation';
+export { PrivateRoute } from './PrivateRoute';

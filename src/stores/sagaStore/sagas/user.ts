@@ -11,6 +11,8 @@ import {
   regRequest,
   regFailure,
   regSuccess,
+  editProfilePasswordRequest,
+  editProfilePasswordFailure,
 } from '../slices/user';
 import {
   TypeAuthResponse,
@@ -18,13 +20,14 @@ import {
   IDataErrorResponse,
   IAuthSuccessResponse,
   IProfile,
+  ChangePwdResponse,
+  ChangePasswordResult,
 } from 'src/api/types';
 import { setError } from '../slices/app';
 function* handleAuth(action: ReturnType<typeof authRequest>) {
   try {
     const { email, password } = action.payload;
     const response: TypeAuthResponse = yield call(serverApi.run, 'signin', 'POST', { email, password });
-    console.log(response);
     if (!response.ok) {
       const error = response.data as IDataErrorResponse;
       yield put(setError({ message: error.errors[0].message, code: error.errors[0].extensions.code }));
@@ -85,6 +88,31 @@ function* handleLogoutUser() {
   localStorage.removeItem('isAuthenticated');
 }
 
+function* handlePwdEdit(action: ReturnType<typeof editProfilePasswordRequest>) {
+  try {
+    const response: ChangePwdResponse = yield call(
+      serverApi.run,
+      'profile/change-password',
+      'POST',
+      action.payload,
+      true
+    );
+    if (!response.ok) {
+      const error = response.data as IDataErrorResponse;
+      yield put(setError({ message: error.errors[0].message, code: error.errors[0].extensions.code }));
+      yield put(editProfilePasswordFailure(error.errors[0].message));
+    } else {
+      const data = response.data as ChangePasswordResult;
+      console.log(data);
+      if (data.success) {
+        yield put(fetchProfileRequest());
+      }
+    }
+  } catch (error: any) {
+    yield put(setError(error.message));
+  }
+}
+
 function* watchAuth() {
   yield takeLatest(authRequest.type, handleAuth);
 }
@@ -101,6 +129,10 @@ function* watchReg() {
   yield takeLatest(regRequest.type, handleReg);
 }
 
+function* watchEditPwd() {
+  yield takeLatest(editProfilePasswordRequest.type, handlePwdEdit);
+}
+
 export default function* userSaga() {
-  yield all([fork(watchAuth), fork(watchReg), fork(watchFetchProfile), fork(watchLogoutUser)]);
+  yield all([fork(watchAuth), fork(watchReg), fork(watchFetchProfile), fork(watchEditPwd), fork(watchLogoutUser)]);
 }

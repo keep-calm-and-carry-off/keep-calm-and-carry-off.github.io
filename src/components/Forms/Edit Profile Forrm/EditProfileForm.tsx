@@ -1,48 +1,76 @@
+import { Box, TextField } from '@mui/material';
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { IUser } from 'src/api/types';
-import { getProfile } from 'src/stores/sagaStore/slices/user';
+import { Controller, useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 
-interface ProfileFormData {
-  firstName: string;
-  lastName: string;
-  middleName: string;
-  birthday: string;
-  mail: string;
-  password: string;
-}
+import { ChangePasswordBodyRq, IUser } from 'src/api/types';
+import ButtonOtus from 'src/components/ButtonOtus';
+import { editProfilePasswordRequest, getProfile } from 'src/stores/sagaStore/slices/user';
+import * as styles from './styles.module.scss';
 
 export const EditProfileForm: React.FC = () => {
   const initialValues = useSelector(getProfile);
   const {
-    register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IUser>({
-    defaultValues: initialValues,
+    control,
+  } = useForm<ChangePasswordBodyRq>({
+    defaultValues: {
+      password: '',
+      newPassword: '',
+    },
   });
   const dispatch = useDispatch();
 
-  const onSubmit = (data: IUser) => {
-    // dispatch(editProfile({ ...initialValues, ...data }));
-    alert('Профиль обновлен');
+  const onSubmit = (data: ChangePasswordBodyRq) => {
+    dispatch(editProfilePasswordRequest({ ...data }));
+    console.log('изменился');
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label>Логин:</label>
-        <input type="text" {...register('name', { required: true })} />
-        {errors.name && <span>Введите имя</span>}
-      </div>
-      <div>
-        <label>e-mail:</label>
-        <input type="text" {...register('email', { required: true })} />
-        {errors.email && <span>Введите e-mail</span>}
-      </div>
-      <button type="submit">Сохранить</button>
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <p>Изменить пароль</p>
+      <Box className={styles.formInput}>
+        <Controller
+          name="password"
+          control={control}
+          rules={{ required: 'Старый пароль обязателен' }}
+          render={({ field }) => (
+            <TextField
+              {...field}
+              className={styles.inputMui}
+              type="password"
+              label="Старый пароль"
+              variant="outlined"
+              fullWidth
+              error={!!errors.password}
+              helperText={errors.password ? errors.password.message : ''}
+            />
+          )}
+        />
+      </Box>
+      <Box className={styles.formInput}>
+        <Controller
+          name="newPassword"
+          control={control}
+          rules={{ required: 'Новый пароль обязателен' }}
+          render={({ field }) => (
+            <TextField
+              {...field}
+              type="password"
+              label="Новый пароль"
+              variant="outlined"
+              fullWidth
+              error={!!errors.newPassword}
+              helperText={errors.newPassword ? errors.newPassword.message : ''}
+            />
+          )}
+        />
+      </Box>
+      <hr />
+      <ButtonOtus type="submit" fullWidth>
+        Сохранить изменения
+      </ButtonOtus>
     </form>
   );
 };

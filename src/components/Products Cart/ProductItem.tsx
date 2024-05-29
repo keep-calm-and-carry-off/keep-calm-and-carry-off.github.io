@@ -5,9 +5,9 @@ import ShoppingCartButton from '../ShoppingCartButton';
 import Divider from '@mui/material/Divider';
 import cn from 'classnames';
 import { ICartProduct } from 'src/types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { AiFillDelete } from 'react-icons/ai';
-import { useDispatch } from 'react-redux';
+
 import { IOrderProduct, IProduct } from 'src/api/types';
 import { IProductCart } from '../ProductCart';
 import { removeFromCart } from 'src/stores/sagaStore/slices/cart';

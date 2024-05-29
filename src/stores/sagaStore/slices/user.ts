@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IAuthSuccessResponse, IUser } from 'src/api/types';
+import { ChangePasswordBodyRq, ChangePwdResponse, IAuthSuccessResponse, IUser } from 'src/api/types';
 import { RootState } from '../store';
 import { LoginPWD } from 'src/types';
 
@@ -69,9 +69,11 @@ const userSlice = createSlice({
       localStorage.removeItem('userInfo');
       localStorage.removeItem('isAuthenticated');
     },
+    editProfilePasswordRequest: (state, action: PayloadAction<ChangePasswordBodyRq>) => {},
+    editProfilePasswordSuccess: (state, action: PayloadAction<ChangePwdResponse>) => {},
+    editProfilePasswordFailure: (state, action: PayloadAction<string>) => {},
   },
 });
-
 export const {
   authRequest,
   authSuccess,
@@ -82,6 +84,9 @@ export const {
   fetchProfileRequest,
   fetchProfileSuccess,
   fetchProfileFailure,
+  editProfilePasswordRequest,
+  editProfilePasswordSuccess,
+  editProfilePasswordFailure,
   logout,
 } = userSlice.actions;
 

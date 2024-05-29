@@ -40,14 +40,14 @@ export const OrderItem: FC<{ order: IOrder; dataPosition: string }> = ({ order, 
 const OrderProduct: FC<{ productId: string; quantity: number }> = ({ productId, quantity }) => {
   const product = useSelector(getGameById(productId));
   return (
-    <div className='d-flex flex-column w-25'>
+    <div className="d-flex flex-column w-25">
       {product && (
         <>
           <div className={styles.productContainer}>
             <img src={product.photo} alt={product.name} />
             <div className={styles.productQuantity}>x{quantity}</div>
           </div>
-          <div className='text-center'>{quantity * product.price} руб.</div>
+          <div className="text-center">{quantity * product.price} руб.</div>
         </>
       )}
     </div>

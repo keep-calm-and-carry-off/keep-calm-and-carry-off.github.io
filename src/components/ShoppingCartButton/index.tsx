@@ -1,10 +1,10 @@
 import React, { ChangeEvent } from 'react';
-import { LuPlus, LuMinus } from 'react-icons/lu';
+import { LuPlus, LuMinus, LuShoppingCart } from 'react-icons/lu';
 import * as styles from './styles.module.scss';
 import ButtonOtus from '../ButtonOtus';
-import { LuShoppingCart } from 'react-icons/lu';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+
+import { useSelector, useDispatch } from 'react-redux';
+
 import { IProduct } from 'src/api/types';
 import { IProductCart } from '../ProductCart';
 import { getGameById } from 'src/stores/sagaStore/slices/products';

@@ -148,3 +148,6 @@ div {
 :global(.dark-mode) {
     @include colors-dark-mode;
 }
+:global(.ant-notification){
+    z-index: 25000;
+}

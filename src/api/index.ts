@@ -2,14 +2,14 @@ import { IOrderCreateRequest, IResponse } from './types';
 
 const BASE_URL = 'http://19429ba06ff2.vps.myjino.ru';
 
-export type IParams = Record<string, string | number | boolean | undefined | {}>;
+export type IParams = Record<string, string | number | boolean | undefined | any>;
 
 export const serverApi = {
   run: async <T extends IResponse<unknown>>(
     url: string,
     method: 'DELETE' | 'PATCH' | 'POST' | 'PUT' | 'GET' | 'HEAD' = 'GET',
     data: Record<string, unknown> | IOrderCreateRequest = {},
-    protectedRequest: boolean = false,
+    protectedRequest = false,
     params: IParams = {},
     headers: Record<string, string> = {}
   ): Promise<T> => {
@@ -41,6 +41,7 @@ export const serverApi = {
     };
     const response = await fetch(_url.toString(), request).then((result) => result);
     const responseData = await response.json();
+    console.log(responseData);
     return {
       ok: response.ok,
       status: response.status,

@@ -42,12 +42,12 @@ export const ProductCategories: FC = () => {
   const [catId, setCatId] = useState<string>('');
 
   return (
-    <div className='d-flex'>
+    <div className="d-flex">
       <div className="col-2">
         <Categories categories={categories} catId={catId} setCatId={setCatId} />
       </div>
-      <div className='col-10'>
-        <ProductList categoryId={catId}/>
+      <div className="col-10">
+        <ProductList categoryId={catId} />
       </div>
     </div>
   );
