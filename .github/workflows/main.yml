@@ -1,48 +1,50 @@
-name: Test, Lint, Build and Deploy on Github Pages
+name: Deploy FOWYAD
 
 on:
   push:
-    branches: ["master", "main", "dev"]
-
-  # Позволяет запустить этот рабочий процесс вручную на вкладке Actions
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout this site repository
+        uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Checkout FOWYAD source
+        uses: actions/checkout@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          repository: keep-calm-and-carry-off/fowyad
+          ref: main
+          path: site
 
-      # Устанавливаем зависимости
-      - name: Install dependencies
-        run: npm install
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: site/package-lock.json
 
-      # Собираем приложение
-      - name: Build Application
-        run: npm run build
+      - name: Install
+        working-directory: site
+        run: npm ci
 
+      - name: Build the static site for the account root
+        working-directory: site
+        run: npm run pages:build
+        env:
+          NEXT_PUBLIC_BASE_PATH: ""
+          NEXT_PUBLIC_SITE_URL: https://keep-calm-and-carry-off.github.io
 
-      # Публикуем приложение на Github Pages
-      - name: Deploy to Github Pages
-        uses: JamesIves/github-pages-deploy-action@4.2.1
+      - name: Keep Next.js assets out of Jekyll
+        run: touch site/out/.nojekyll
+
+      - name: Publish to the account root
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: dist
-
-      # Останавливаем выполнение строго при неудачных тестах
-      - name: Fail on failed tests
-        run: |
-          if [ ${{ job.status }} == 'failure' ]; then exit 1; fi;
+          folder: site/out
+          clean: true
