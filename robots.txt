@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://keep-calm-and-carry-off.github.io/sitemap.xml
